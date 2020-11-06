@@ -20,7 +20,7 @@
     "primaryTokenAttribute": "health",
     "secondaryTokenAttribute": "power",
     "url": "https://github.com/n0la/alpha-foundry",
-    "manifest": "https://github.com/n0la/alpha-foundry/raw/master/system.json",
-    "download": "https://github.com/n0la/alpha-foundry/-/archive/release-040/worldbuilding-release-040.zip",
+    "manifest": "https://raw.githubusercontent.com/n0la/alpha-foundry/master/system.json",
+    "download": "https://github.com/n0la/alpha-foundry/archive/master.zip",
     "license": "LICENSE.txt"
 }
