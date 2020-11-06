@@ -1,3 +1,4 @@
-# Simple Worldbuilding System
+# Foundry Support for the Alpha RPG
 
-A simple game system for Foundry VTT which allows for flexible definition of Actors and Items to assist with worldbuilding or for running games which do not have a more complete system implementation available.
+Foundry support for the Alpha RPG. Based on the simple world building
+module provided by foundry.
