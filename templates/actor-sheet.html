@@ -35,7 +35,7 @@
                 <h2>Core Attributes:</h2>
                 <p>
                     PHY:
-                    <input type="text" data-dtype="Number"
+                    <input type="number" data-dtype="Number"
                            name="data.physique.value"
                            value="{{data.physique.value}}"
                            />
@@ -43,7 +43,7 @@
                 </p>
                 <p>
                     MOT:
-                    <input type="text" data-dtype="Number"
+                    <input type="number" data-dtype="Number"
                            name="data.motorics.value"
                            value="{{data.motorics.value}}"
                            />
@@ -51,7 +51,7 @@
                 </p>
                 <p>
                     INT:
-                    <input type="text" data-dtype="Number"
+                    <input type="number" data-dtype="Number"
                            name="data.intellect.value"
                            value="{{data.intellect.value}}"
                            />
@@ -59,7 +59,7 @@
                 </p>
                 <p>
                     PSY:
-                    <input type="text" data-dtype="Number"
+                    <input type="number" data-dtype="Number"
                            name="data.psyche.value"
                            value="{{data.psyche.value}}"
                            />
@@ -68,33 +68,37 @@
                 <h2>Secondary Attributes</h2>
                 <p>
                     Composure:
-                    <input type="text" data-dtype="Number"
+                    <input type="number" data-dtype="Number"
                            name="data.composure.value"
                            value="{{data.composure.value}}"
+                           placeholder="Intellect + Psyche"
                            />
                     <a class="dicepool-roll">Roll</a>
                 </p>
                 <p>
                     Endurance:
-                    <input type="text" data-dtype="Number"
+                    <input type="number" data-dtype="Number"
                            name="data.endurance.value"
                            value="{{data.endurance.value}}"
+                           placeholder="Physique + Motorics"
                            />
                     <a class="dicepool-roll">Roll</a>
                 </p>
                 <p>
                     Focus:
-                    <input type="text" data-dtype="Number"
+                    <input type="number" data-dtype="Number"
                            name="data.focus.value"
-                       value="{{data.focus.value}}"
+                           value="{{data.focus.value}}"
+                           placeholder="Motorics + Psyche"
                            />
                     <a class="dicepool-roll">Roll</a>
                 </p>
                 <p>
                     Vigilance:
-                    <input type="text" data-dtype="Number"
+                    <input type="number" data-dtype="Number"
                            name="data.vigilance.value"
                            value="{{data.vigilance.value}}"
+                           placeholder="Physique + Intellect"
                            />
                     <a class="dicepool-roll">Roll</a>
                 </p>
@@ -102,48 +106,57 @@
             <div class="resource">
                 <h2>Other Attributes:</h2>
                 <p>
-                    Pace: <input type="text" data-dtype="Number"
+                    Pace: <input type="number" data-dtype="Number"
                                  name="data.pace.value"
                                  value="{{data.pace.value}}"
                                  />
                 </p>
                 <p>
-                    Size: <input type="text" data-dtype="Number"
+                    Size: <input type="number" data-dtype="Number"
                                  name="data.size.value"
                                  value="{{data.size.value}}"
                                  />
                 </p>
                 <h2>Stats:</h2>
                 <p>
-                    Resilience: <input type="text" data-dtype="Number"
+                    Resilience: <input type="number" data-dtype="Number"
                                        name="data.resilience.value"
                                        value="{{data.resilience.value}}"
+                                       placeholder="(Size + Endurance) / 2"
                                        />
                     <a class="dicepool-roll">Roll</a>
                 </p>
                 <p>
-                    Willpower: <input type="text" data-dtype="Number"
+                    Willpower: <input type="number" data-dtype="Number"
                                       name="data.willpower.value"
                                       value="{{data.willpower.value}}"
+                                      placeholder="(5 + Composure) / 2"
                                       />
                     <a class="dicepool-roll">Roll</a>
                 </p>
                 <h2>Resource and Wealth</h2>
                 <p>
                     Wealth:
-                    <input type="text" data-dtype="Number"
+                    <input type="number" data-dtype="Number"
                            name="data.wealth.value"
                            value="{{data.wealth.value}}"
                            />
                     <a class="dicepool-roll">Roll</a>
-                </span>
                 <p>
                     Resources:
-                    <input type="text" data-dtype="Number"
+                    <input type="number" data-dtype="Number"
                            name="data.resource.value"
                            value="{{data.resource.value}}"
                            />
                 </p>
+                <p>
+                    Trade Goods:
+                    <input type="number" data-dtype="Number"
+                           name="data.tradegoods.value"
+                           value="{{data.tradegoods.value}}"
+                           />
+                </p>
+
             </div>
         </div>
 
