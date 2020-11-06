@@ -7,8 +7,8 @@
     "compatibleCoreVersion": "0.7.3",
     "templateVersion": 2,
     "author": "Florian Stinglmayr",
-    "esmodules": ["module/simple.js"],
-    "styles": ["styles/simple.css"],
+    "esmodules": ["module/alpha.js"],
+    "styles": ["styles/alpha.css"],
     "packs": [],
     "languages": [{
         "lang": "en",

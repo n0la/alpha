@@ -90,10 +90,20 @@ export class SimpleActorSheet extends ActorSheet
         if (value == undefined || value == "" || value == 0) {
             return;
         }
-        let r = new Roll(value + "d6cs>=4", this.actor.getRollData());
-        r.roll().toMessage({
+        let r = new Roll(value + "d6", this.actor.getRollData());
+        let success = 0;
+        r.evaluate();
+        r.terms[0].results.forEach(function (i, idx) {
+            if (i.result >= 6) {
+                success += 2;
+            } else if (i.result >= 4) {
+                success += 1;
+            }
+        });
+        r.toMessage({
             user: game.user._id,
-            speaker: ChatMessage.getSpeaker({actor: this.actor})
+            speaker: ChatMessage.getSpeaker({actor: this.actor}),
+            flavor: `<h2>Successes: ${success}</h2>`
         });
     }
 
