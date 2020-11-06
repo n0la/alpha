@@ -24,7 +24,7 @@ export class SimpleActorSheet extends ActorSheet
     getData() {
         const data = super.getData();
         EntitySheetHelper.getAttributeData(data);
-        data.shorthand = !!game.settings.get("worldbuilding", "macroShorthand");
+        data.shorthand = !!game.settings.get("alpha", "macroShorthand");
         return data;
     }
 
@@ -41,6 +41,9 @@ export class SimpleActorSheet extends ActorSheet
         html.find(".attributes")
             .on("click", "a.attribute-roll",
                 EntitySheetHelper.onAttributeRoll.bind(this));
+
+        html.find(".dicepool-roll")
+            .on("click", this._on_dice_pool_roll.bind(this));
 
         // Update Inventory Item
         html.find('.item-edit').click(ev => {
@@ -76,11 +79,30 @@ export class SimpleActorSheet extends ActorSheet
                 EntitySheetHelper.onClickAttributeGroupControl.bind(this));
     }
 
+    _on_dice_pool_roll(event)
+    {
+        let button = $(event.currentTarget);
+        let attribute = button.siblings("input")[0];
+        if (attribute == undefined) {
+            return;
+        }
+        let value = attribute.value;
+        if (value == undefined || value == "" || value == 0) {
+            return;
+        }
+        let r = new Roll(value + "d6cs>=4", this.actor.getRollData());
+        r.roll().toMessage({
+            user: game.user._id,
+            speaker: ChatMessage.getSpeaker({actor: this.actor})
+        });
+    }
+
     /**
      * Listen for roll buttons on items.
      * @param {MouseEvent} event    The originating left click event
      */
-    _onItemRoll(event) {
+    _onItemRoll(event)
+    {
         let button = $(event.currentTarget);
         let r = new Roll(button.data('roll'), this.actor.getRollData());
         const li = button.parents(".item");

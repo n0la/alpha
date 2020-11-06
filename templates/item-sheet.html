@@ -55,12 +55,12 @@
             </header>
 
             {{!-- Render the attribute list partial. --}}
-            {{> "systems/worldbuilding/templates/parts/sheet-attributes.html"
+            {{> "systems/alpha/templates/parts/sheet-attributes.html"
             attributes=data.ungroupedAttributes dtypes=dtypes}}
 
             {{!-- Render the grouped attributes partial and control. --}}
             <div class="groups">
-                {{> "systems/worldbuilding/templates/parts/sheet-groups.html"
+                {{> "systems/alpha/templates/parts/sheet-groups.html"
                 attributes=data.groupedAttributes groups=data.groups
                 dtypes=dtypes}}
 

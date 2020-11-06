@@ -194,7 +194,7 @@ export class EntitySheetHelper
               querySelector(".attribute-label")?.value;
         const chatLabel = label ??
               button.parentElement.querySelector(".attribute-key").value;
-        const shorthand = game.settings.get("worldbuilding", "macroShorthand");
+        const shorthand = game.settings.get("alpha", "macroShorthand");
         // Use the actor for rollData so that formulas are always
         // in reference to the parent actor.
         const rollData = this.actor.getRollData();

@@ -1,5 +1,6 @@
 /**
- * A simple and flexible system for world-building using an arbitrary collection of character and item attributes
+ * A simple and flexible system for world-building using an
+ * arbitrary collection of character and item attributes
  * Author: Atropos
  * Software License: GNU GPLv3
  */
@@ -9,7 +10,7 @@ import { SimpleActor } from "./actor.js";
 import { SimpleItemSheet } from "./item-sheet.js";
 import { SimpleActorSheet } from "./actor-sheet.js";
 import { preloadHandlebarsTemplates } from "./templates.js";
-import { createWorldbuildingMacro } from "./macro.js";
+import { createAlphaMacro } from "./macro.js";
 
 /* -------------------------------------------- */
 /*  Foundry VTT Initialization                  */
@@ -30,9 +31,9 @@ Hooks.once("init", async function() {
         decimals: 2
     };
 
-    game.worldbuilding = {
+    game.alpha = {
         SimpleActor,
-        createWorldbuildingMacro
+        createAlphaMacro
     };
 
     // Define custom Entity classes
@@ -40,14 +41,14 @@ Hooks.once("init", async function() {
 
     // Register sheet application classes
     Actors.unregisterSheet("core", ActorSheet);
-    Actors.registerSheet("worldbuilding", SimpleActorSheet,
+    Actors.registerSheet("alpha", SimpleActorSheet,
                          { makeDefault: true });
     Items.unregisterSheet("core", ItemSheet);
-    Items.registerSheet("worldbuilding", SimpleItemSheet,
+    Items.registerSheet("alpha", SimpleItemSheet,
                         { makeDefault: true });
 
     // Register system settings
-    game.settings.register("worldbuilding", "macroShorthand", {
+    game.settings.register("alpha", "macroShorthand", {
         name: "SETTINGS.SimpleMacroShorthandN",
         hint: "SETTINGS.SimpleMacroShorthandL",
         scope: "world",
@@ -57,7 +58,7 @@ Hooks.once("init", async function() {
     });
 
     // Register initiative setting.
-    game.settings.register("worldbuilding", "initFormula", {
+    game.settings.register("alpha", "initFormula", {
         name: "SETTINGS.SimpleInitFormulaN",
         hint: "SETTINGS.SimpleInitFormulaL",
         scope: "world",
@@ -68,7 +69,7 @@ Hooks.once("init", async function() {
     });
 
     // Retrieve and assign the initiative formula setting.
-    const initFormula = game.settings.get("worldbuilding", "initFormula");
+    const initFormula = game.settings.get("alpha", "initFormula");
     _simpleUpdateInit(initFormula);
 
     /**
@@ -113,7 +114,7 @@ Hooks.once("init", async function() {
  * Macrobar hook.
  */
 Hooks.on("hotbarDrop", (bar, data, slot) =>
-    createWorldbuildingMacro(data, slot));
+    createAlphaMacro(data, slot));
 
 /**
  * Adds the actor template context menu.
@@ -125,11 +126,11 @@ Hooks.on("getActorDirectoryEntryContext", (html, options) => {
         icon: '<i class="fas fa-stamp"></i>',
         condition: li => {
             const actor = game.actors.get(li.data("entityId"));
-            return !actor.getFlag("worldbuilding", "isTemplate");
+            return !actor.getFlag("alpha", "isTemplate");
         },
         callback: li => {
             const actor = game.actors.get(li.data("entityId"));
-            actor.setFlag("worldbuilding", "isTemplate", true);
+            actor.setFlag("alpha", "isTemplate", true);
         }
     });
 
@@ -139,11 +140,11 @@ Hooks.on("getActorDirectoryEntryContext", (html, options) => {
         icon: '<i class="fas fa-times"></i>',
         condition: li => {
             const actor = game.actors.get(li.data("entityId"));
-            return actor.getFlag("worldbuilding", "isTemplate");
+            return actor.getFlag("alpha", "isTemplate");
         },
         callback: li => {
             const actor = game.actors.get(li.data("entityId"));
-            actor.setFlag("worldbuilding", "isTemplate", false);
+            actor.setFlag("alpha", "isTemplate", false);
         }
     });
 });
@@ -158,11 +159,11 @@ Hooks.on("getItemDirectoryEntryContext", (html, options) => {
         icon: '<i class="fas fa-stamp"></i>',
         condition: li => {
             const item = game.items.get(li.data("entityId"));
-            return !item.getFlag("worldbuilding", "isTemplate");
+            return !item.getFlag("alpha", "isTemplate");
         },
         callback: li => {
             const item = game.items.get(li.data("entityId"));
-            item.setFlag("worldbuilding", "isTemplate", true);
+            item.setFlag("alpha", "isTemplate", true);
         }
     });
 
@@ -172,11 +173,11 @@ Hooks.on("getItemDirectoryEntryContext", (html, options) => {
         icon: '<i class="fas fa-times"></i>',
         condition: li => {
             const item = game.items.get(li.data("entityId"));
-            return item.getFlag("worldbuilding", "isTemplate");
+            return item.getFlag("alpha", "isTemplate");
         },
         callback: li => {
             const item = game.items.get(li.data("entityId"));
-            item.setFlag("worldbuilding", "isTemplate", false);
+            item.setFlag("alpha", "isTemplate", false);
         }
     });
 });
@@ -211,7 +212,7 @@ async function _simpleDirectoryTemplates(collection, event)
           game.actors : game.items;
     const cls = collection.tabName === "actors" ? Actor : Item;
     let templates = entityCollection.filter(
-        a => a.getFlag("worldbuilding", "isTemplate"));
+        a => a.getFlag("alpha", "isTemplate"));
     let ent = game.i18n.localize(cls.config.label);
 
     // Setup default creation data
@@ -232,7 +233,7 @@ async function _simpleDirectoryTemplates(collection, event)
     // Render the confirmation dialog window
     const templateData = {upper: ent, lower: ent.toLowerCase(), types: types};
     const dlg = await renderTemplate(
-        `systems/worldbuilding/templates/sidebar/entity-create.html`,
+        `systems/alpha/templates/sidebar/entity-create.html`,
         templateData);
     return Dialog.confirm({
         title: `${game.i18n.localize("SIMPLE.Create")} ${createData.name}`,
@@ -244,7 +245,7 @@ async function _simpleDirectoryTemplates(collection, event)
                 createData = mergeObject(template.data, createData,
                                          {inplace: false});
                 createData.type = template.data.type;
-                delete createData.flags.worldbuilding.isTemplate;
+                delete createData.flags.alpha.isTemplate;
             }
             createData.name = form.name.value;
             return cls.create(createData, {renderSheet: true});

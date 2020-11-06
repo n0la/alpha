@@ -19,7 +19,7 @@ export class SimpleActor extends Actor
     /** @override */
     getRollData() {
         const data = super.getRollData();
-        const shorthand = game.settings.get("worldbuilding", "macroShorthand");
+        const shorthand = game.settings.get("alpha", "macroShorthand");
         const formulaAttributes = [];
         const itemAttributes = [];
 

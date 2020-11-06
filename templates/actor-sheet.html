@@ -8,125 +8,134 @@
                 <input name="name" type="text"
                        value="{{actor.name}}" placeholder="Name" />
             </h1>
-            <h3>Core Attributes:</h3>
-            <div class="resource">
-                <div>
-                    PHY:
-                    <input type="text" data-dtype="Number"
-                           name="data.physique.value"
-                           value="{{data.physique.value}}"
-                           />
-                </div>
-                <div>
-                    MOT:
-                    <input type="text" data-dtype="Number"
-                           name="data.motorics.value"
-                           value="{{data.motorics.value}}"
-                           />
-                </div>
-                <div>
-                    INT:
-                    <input type="text" data-dtype="Number"
-                           name="data.intellect.value"
-                           value="{{data.intellect.value}}"
-                           />
-                </div>
-                <div>
-                    PSY:
-                    <input type="text" data-dtype="Number"
-                           name="data.psyche.value"
-                           value="{{data.psyche.value}}"
-                           />
-                </div>
-            </div>
-            <h3>Secondary Attributes</h3>
-            <div class="resource">
-                <div>
-                    Composure:
-                    <input type="text" data-dtype="Number"
-                           name="data.composure.value"
-                           value="{{data.composure.value}}"
-                           />
-                </div>
-                <div>
-                    Endurance:
-                    <input type="text" data-dtype="Number"
-                           name="data.composure.value"
-                           value="{{data.composure.value}}"
-                           />
-                </div>
-                <div>
-                    Focus:
-                    <input type="text" data-dtype="Number"
-                           name="data.focus.value"
-                           value="{{data.focus.value}}"
-                           />
-                </div>
-                <div>
-                    Vigilance:
-                    <input type="text" data-dtype="Number"
-                           name="data.vigilance.value"
-                           value="{{data.vigilance.value}}"
-                           />
-                </div>
-            </div>
-            <h3>Other Attributes:</h3>
-            <div class="resource">
-                Pace: <input type="text" data-dtype="Number"
-                             name="data.pace.value"
-                             value="{{data.pace.value}}"
-                             />
-                Size: <input type="text" data-dtype="Number"
-                             name="data.size.value"
-                             value="{{data.size.value}}"
-                             />
-            </div>
-            <h3>Stats:</h3>
-            <div class="resource">
-                Resilience: <input type="text" data-dtype="Number"
-                                   name="data.resilience.value"
-                                   value="{{data.resilience.value}}"
-                             />
-                Willpower: <input type="text" data-dtype="Number"
-                                  name="data.willpower.value"
-                                  value="{{data.willpower.value}}"
-                             />
-            </div>
-            <h3>Resource and Wealth</h3>
-            <div class="resource">
-                <input type="text" data-dtype="Number"
-                       name="data.resource.value"
-                       value="{{data.resource.value}}"
-                       />
-                <span> / </span>
-                <input type="text" data-dtype="Number"
-                       name="data.resource.max"
-                       value="{{data.resource.max}}"
-                       />
-            </div>
-            <div class="resource">
-                <input type="text" data-dtype="Number"
-                       name="data.wealth.value"
-                       value="{{data.wealth.value}}"
-                       />
-                <span> / </span>
-                <input type="text" data-dtype="Number"
-                       name="data.wealth.max"
-                       value="{{data.wealth.max}}"
-                       />
-            </div>
         </div>
     </header>
 
     {{!-- Sheet Tab Navigation --}}
     <nav class="sheet-tabs tabs" data-group="primary">
         <a class="item" data-tab="description">Description</a>
-        <a class="item" data-tab="items">Items</a>
         <a class="item" data-tab="attributes">Attributes</a>
+        <a class="item" data-tab="items">Items</a>
     </nav>
 
     {{!-- Sheet Body --}}
     <section class="sheet-body">
+        <div class="tab attributes" data-group="primary" data-tab="attributes">
+            <div class="resource">
+                <h2>Core Attributes:</h2>
+                <p>
+                    PHY:
+                    <input type="text" data-dtype="Number"
+                           name="data.physique.value"
+                           value="{{data.physique.value}}"
+                           />
+                    <a class="dicepool-roll">Roll</a>
+                </p>
+                <p>
+                    MOT:
+                    <input type="text" data-dtype="Number"
+                           name="data.motorics.value"
+                           value="{{data.motorics.value}}"
+                           />
+                    <a class="dicepool-roll">Roll</a>
+                </p>
+                <p>
+                    INT:
+                    <input type="text" data-dtype="Number"
+                           name="data.intellect.value"
+                           value="{{data.intellect.value}}"
+                           />
+                    <a class="dicepool-roll">Roll</a>
+                </p>
+                <p>
+                    PSY:
+                    <input type="text" data-dtype="Number"
+                           name="data.psyche.value"
+                           value="{{data.psyche.value}}"
+                           />
+                    <a class="dicepool-roll">Roll</a>
+                </p>
+                <h2>Secondary Attributes</h2>
+                <p>
+                    Composure:
+                    <input type="text" data-dtype="Number"
+                           name="data.composure.value"
+                           value="{{data.composure.value}}"
+                           />
+                    <a class="dicepool-roll">Roll</a>
+                </p>
+                <p>
+                    Endurance:
+                    <input type="text" data-dtype="Number"
+                           name="data.endurance.value"
+                           value="{{data.endurance.value}}"
+                           />
+                    <a class="dicepool-roll">Roll</a>
+                </p>
+                <p>
+                    Focus:
+                    <input type="text" data-dtype="Number"
+                           name="data.focus.value"
+                       value="{{data.focus.value}}"
+                           />
+                    <a class="dicepool-roll">Roll</a>
+                </p>
+                <p>
+                    Vigilance:
+                    <input type="text" data-dtype="Number"
+                           name="data.vigilance.value"
+                           value="{{data.vigilance.value}}"
+                           />
+                    <a class="dicepool-roll">Roll</a>
+                </p>
+            </div>
+            <div class="resource">
+                <h2>Other Attributes:</h2>
+                <p>
+                    Pace: <input type="text" data-dtype="Number"
+                                 name="data.pace.value"
+                                 value="{{data.pace.value}}"
+                                 />
+                </p>
+                <p>
+                    Size: <input type="text" data-dtype="Number"
+                                 name="data.size.value"
+                                 value="{{data.size.value}}"
+                                 />
+                </p>
+                <h2>Stats:</h2>
+                <p>
+                    Resilience: <input type="text" data-dtype="Number"
+                                       name="data.resilience.value"
+                                       value="{{data.resilience.value}}"
+                                       />
+                    <a class="dicepool-roll">Roll</a>
+                </p>
+                <p>
+                    Willpower: <input type="text" data-dtype="Number"
+                                      name="data.willpower.value"
+                                      value="{{data.willpower.value}}"
+                                      />
+                    <a class="dicepool-roll">Roll</a>
+                </p>
+                <h2>Resource and Wealth</h2>
+                <p>
+                    Wealth:
+                    <input type="text" data-dtype="Number"
+                           name="data.wealth.value"
+                           value="{{data.wealth.value}}"
+                           />
+                    <a class="dicepool-roll">Roll</a>
+                </span>
+                <p>
+                    Resources:
+                    <input type="text" data-dtype="Number"
+                           name="data.resource.value"
+                           value="{{data.resource.value}}"
+                           />
+                </p>
+            </div>
+        </div>
 
         {{!-- Biography Tab --}}
         <div class="tab biography" data-group="primary" data-tab="description">
@@ -181,30 +190,6 @@
                 </li>
                 {{/each}}
             </ol>
-        </div>
-
-        {{!-- Attributes Tab --}}
-        <div class="tab attributes" data-group="primary" data-tab="attributes">
-            <header class="attributes-header flexrow">
-                <span class="attribute-key">{{localize "SIMPLE.AttributeKey"}}</span>
-                <span class="attribute-value">{{localize "SIMPLE.AttributeValue"}}</span>
-                <span class="attribute-label">{{localize "SIMPLE.AttributeLabel"}}</span>
-                <span class="attribute-dtype">{{localize "SIMPLE.AttributeDtype"}}</span>
-                <a class="attribute-control" data-action="create" data-group="{{group}}"><i class="fas fa-plus"></i></a>
-            </header>
-
-            {{!-- Render the attribute list partial. --}}
-            {{> "systems/worldbuilding/templates/parts/sheet-attributes.html" attributes=data.ungroupedAttributes dtypes=dtypes}}
-
-            {{!-- Render the grouped attributes partial and control. --}}
-            <div class="groups">
-                {{> "systems/worldbuilding/templates/parts/sheet-groups.html" attributes=data.groupedAttributes groups=data.groups dtypes=dtypes}}
-
-                <div class="group-controls flexrow">
-                    <input class="group-prefix" type="text" val=""/>
-                    <a class="button group-control" data-action="create-group"><i class="fas fa-plus"></i>Add Attribute Group</a>
-                </div>
-            </div>
         </div>
     </section>
 </form>

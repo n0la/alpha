@@ -2,8 +2,11 @@
     {{#each groups as |group groupKey|}}
     <li class="group" data-group="{{groupKey}}">
         <div class="group-header flexrow">
-            <input class="group-key" type="text" readonly name="data.groups.{{groupKey}}.key" value="{{groupKey}}" />
-            <input class="group-label" type="text" name="data.groups.{{groupKey}}.label" value="{{group.label}}" placeholder="Group Label" />
+            <input class="group-key" type="text" readonly
+                   name="data.groups.{{groupKey}}.key" value="{{groupKey}}" />
+            <input class="group-label" type="text"
+                   name="data.groups.{{groupKey}}.label"
+                   value="{{group.label}}" placeholder="Group Label" />
             <select class="group-dtype" name="data.groups.{{groupKey}}.dtype">
                 {{#select group.dtype}}
                 {{#each ../dtypes as |t|}}
@@ -11,11 +14,17 @@
                 {{/each}}
                 {{/select}}
             </select>
-            <a class="attribute-control" data-action="create" data-group="{{groupKey}}" data-dtype="{{group.dtype}}"><i class="fas fa-plus"></i></a>
-            <a class="group-control" data-action="delete-group"><i class="fas fa-trash"></i></a>
+            <a class="attribute-control" data-action="create"
+               data-group="{{groupKey}}" data-dtype="{{group.dtype}}">
+                <i class="fas fa-plus"></i>
+            </a>
+            <a class="group-control" data-action="delete-group">
+                <i class="fas fa-trash"></i>
+            </a>
         </div>
 
-        {{> "systems/worldbuilding/templates/parts/sheet-attributes.html" attributes=group.attributes group=groupKey dtypes=../dtypes}}
+        {{> "systems/alpha/templates/parts/sheet-attributes.html"
+        attributes=group.attributes group=groupKey dtypes=../dtypes}}
     </li>
     {{/each}}
 </ol>
