@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "skipLibCheck": true,
+    "outDir": "dist",
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
+    ],
+    "types": [
+      "foundry-pc-types"
+    ]
+  },
+  "include": [
+    "module/**/*.js",
+  ]
+}

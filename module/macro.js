@@ -5,18 +5,18 @@
  * @param {number} slot     The hotbar slot to use
  * @returns {Promise}
  */
-export async function createAlphaMacro(data, slot) {
+export async function createAlphaMacro (data, slot) {
   const command = `const roll = new Roll("${data.roll}", actor ? actor.getRollData() : {});
-  roll.toMessage({speaker, flavor: "${data.label}"});`;
-  let macro = game.macros.entities.find(m => (m.name === item.label) && (m.command === command));
+  roll.toMessage({speaker, flavor: "${data.label}"});`
+  let macro = game.macros.entities.find(m => (m.name === item.label) && (m.command === command))
   if (!macro) {
     macro = await Macro.create({
       name: data.label,
-      type: "script",
+      type: 'script',
       command: command,
-      flags: { "alpha.attrMacro": true }
-    });
+      flags: { 'alpha.attrMacro': true },
+    })
   }
-  game.user.assignHotbarMacro(macro, slot);
-  return false;
+  game.user.assignHotbarMacro(macro, slot)
+  return false
 }

@@ -6,11 +6,11 @@
  */
 
 // Import Modules
-import { SimpleActor } from "./actor.js";
-import { SimpleItemSheet } from "./item-sheet.js";
-import { SimpleActorSheet } from "./actor-sheet.js";
-import { preloadHandlebarsTemplates } from "./templates.js";
-import { createAlphaMacro } from "./macro.js";
+import { SimpleActor } from './actor.js'
+import { SimpleItemSheet } from './item-sheet.js'
+import { SimpleActorSheet } from './actor-sheet.js'
+import { preloadHandlebarsTemplates } from './templates.js'
+import { createAlphaMacro } from './macro.js'
 
 /* -------------------------------------------- */
 /*  Foundry VTT Initialization                  */
@@ -19,180 +19,179 @@ import { createAlphaMacro } from "./macro.js";
 /**
  * Init hook.
  */
-Hooks.once("init", async function() {
-    console.log(`Initializing Alpha System`);
+Hooks.once('init', async function () {
+  console.log(`Initializing Alpha System`)
 
-    /**
+  /**
      * Set an initiative formula for the system. This will be updated later.
      * @type {String}
      */
-    CONFIG.Combat.initiative = {
-        formula: "1d20",
-        decimals: 2
-    };
+  CONFIG.Combat.initiative = {
+    formula: '1d20',
+    decimals: 2,
+  }
 
-    game.alpha = {
-        SimpleActor,
-        createAlphaMacro
-    };
+  game.alpha = {
+    SimpleActor,
+    createAlphaMacro,
+  }
 
-    // Define custom Entity classes
-    CONFIG.Actor.entityClass = SimpleActor;
+  // Define custom Entity classes
+  CONFIG.Actor.entityClass = SimpleActor
 
-    // Register sheet application classes
-    Actors.unregisterSheet("core", ActorSheet);
-    Actors.registerSheet("alpha", SimpleActorSheet,
-                         { makeDefault: true });
-    Items.unregisterSheet("core", ItemSheet);
-    Items.registerSheet("alpha", SimpleItemSheet,
-                        { makeDefault: true });
+  // Register sheet application classes
+  Actors.unregisterSheet('core', ActorSheet)
+  Actors.registerSheet('alpha', SimpleActorSheet,
+    { makeDefault: true })
+  Items.unregisterSheet('core', ItemSheet)
+  Items.registerSheet('alpha', SimpleItemSheet,
+    { makeDefault: true })
 
-    // Register system settings
-    game.settings.register("alpha", "macroShorthand", {
-        name: "SETTINGS.SimpleMacroShorthandN",
-        hint: "SETTINGS.SimpleMacroShorthandL",
-        scope: "world",
-        type: Boolean,
-        default: true,
-        config: true
-    });
+  // Register system settings
+  game.settings.register('alpha', 'macroShorthand', {
+    name: 'SETTINGS.SimpleMacroShorthandN',
+    hint: 'SETTINGS.SimpleMacroShorthandL',
+    scope: 'world',
+    type: Boolean,
+    default: true,
+    config: true,
+  })
 
-    // Register initiative setting.
-    game.settings.register("alpha", "initFormula", {
-        name: "SETTINGS.SimpleInitFormulaN",
-        hint: "SETTINGS.SimpleInitFormulaL",
-        scope: "world",
-        type: String,
-        default: "1d20",
-        config: true,
-        onChange: formula => _simpleUpdateInit(formula, true)
-    });
+  // Register initiative setting.
+  game.settings.register('alpha', 'initFormula', {
+    name: 'SETTINGS.SimpleInitFormulaN',
+    hint: 'SETTINGS.SimpleInitFormulaL',
+    scope: 'world',
+    type: String,
+    default: '1d20',
+    config: true,
+    onChange: formula => _simpleUpdateInit(formula, true),
+  })
 
-    // Retrieve and assign the initiative formula setting.
-    const initFormula = game.settings.get("alpha", "initFormula");
-    _simpleUpdateInit(initFormula);
+  // Retrieve and assign the initiative formula setting.
+  const initFormula = game.settings.get('alpha', 'initFormula')
+  _simpleUpdateInit(initFormula)
 
-    /**
+  /**
      * Update the initiative formula.
      * @param {string} formula - Dice formula to evaluate.
      * @param {boolean} notify - Whether or not to post nofications.
      */
-    function _simpleUpdateInit(formula, notify = false) {
-        // If the formula is valid, use it.
-        try {
-            new Roll(formula).roll();
-            CONFIG.Combat.initiative.formula = formula;
-            if (notify) {
-                ui.notifications.notify(
-                    game.i18n.localize("SIMPLE.NotifyInitFormulaUpdated") +
-                        ` ${formula}`);
-            }
-        }
-        // Otherwise, fall back to a d20.
-        catch (error) {
-            CONFIG.Combat.initiative.formula = "1d20";
-            if (notify) {
-                ui.notifications.error(
-                    game.i18n.localize("SIMPLE.NotifyInitFormulaInvalid") +
-                        ` ${formula}`);
-            }
-        }
+  function _simpleUpdateInit (formula, notify = false) {
+    // If the formula is valid, use it.
+    try {
+      new Roll(formula).roll()
+      CONFIG.Combat.initiative.formula = formula
+      if (notify) {
+        ui.notifications.notify(
+          game.i18n.localize('SIMPLE.NotifyInitFormulaUpdated') +
+                        ` ${formula}`)
+      }
     }
+    // Otherwise, fall back to a d20.
+    catch (error) {
+      CONFIG.Combat.initiative.formula = '1d20'
+      if (notify) {
+        ui.notifications.error(
+          game.i18n.localize('SIMPLE.NotifyInitFormulaInvalid') +
+                        ` ${formula}`)
+      }
+    }
+  }
 
-    /**
+  /**
      * Slugify a string.
      */
-    Handlebars.registerHelper('slugify', function(value) {
-        return value.slugify({strict: true});
-    });
+  Handlebars.registerHelper('slugify', function (value) {
+    return value.slugify({ strict: true })
+  })
 
-    // Preload template partials.
-    preloadHandlebarsTemplates();
-});
+  // Preload template partials.
+  preloadHandlebarsTemplates()
+})
 
 /**
  * Macrobar hook.
  */
-Hooks.on("hotbarDrop", (bar, data, slot) =>
-    createAlphaMacro(data, slot));
+Hooks.on('hotbarDrop', (bar, data, slot) =>
+  createAlphaMacro(data, slot))
 
 /**
  * Adds the actor template context menu.
  */
-Hooks.on("getActorDirectoryEntryContext", (html, options) => {
-    // Define an actor as a template.
-    options.push({
-        name: game.i18n.localize("SIMPLE.DefineTemplate"),
-        icon: '<i class="fas fa-stamp"></i>',
-        condition: li => {
-            const actor = game.actors.get(li.data("entityId"));
-            return !actor.getFlag("alpha", "isTemplate");
-        },
-        callback: li => {
-            const actor = game.actors.get(li.data("entityId"));
-            actor.setFlag("alpha", "isTemplate", true);
-        }
-    });
+Hooks.on('getActorDirectoryEntryContext', (html, options) => {
+  // Define an actor as a template.
+  options.push({
+    name: game.i18n.localize('SIMPLE.DefineTemplate'),
+    icon: '<i class="fas fa-stamp"></i>',
+    condition: li => {
+      const actor = game.actors.get(li.data('entityId'))
+      return !actor.getFlag('alpha', 'isTemplate')
+    },
+    callback: li => {
+      const actor = game.actors.get(li.data('entityId'))
+      actor.setFlag('alpha', 'isTemplate', true)
+    },
+  })
 
-    // Undefine an actor as a template.
-    options.push({
-        name: game.i18n.localize("SIMPLE.UnsetTemplate"),
-        icon: '<i class="fas fa-times"></i>',
-        condition: li => {
-            const actor = game.actors.get(li.data("entityId"));
-            return actor.getFlag("alpha", "isTemplate");
-        },
-        callback: li => {
-            const actor = game.actors.get(li.data("entityId"));
-            actor.setFlag("alpha", "isTemplate", false);
-        }
-    });
-});
+  // Undefine an actor as a template.
+  options.push({
+    name: game.i18n.localize('SIMPLE.UnsetTemplate'),
+    icon: '<i class="fas fa-times"></i>',
+    condition: li => {
+      const actor = game.actors.get(li.data('entityId'))
+      return actor.getFlag('alpha', 'isTemplate')
+    },
+    callback: li => {
+      const actor = game.actors.get(li.data('entityId'))
+      actor.setFlag('alpha', 'isTemplate', false)
+    },
+  })
+})
 
 /**
  * Adds the item template context menu.
  */
-Hooks.on("getItemDirectoryEntryContext", (html, options) => {
-    // Define an item as a template.
-    options.push({
-        name: game.i18n.localize("SIMPLE.DefineTemplate"),
-        icon: '<i class="fas fa-stamp"></i>',
-        condition: li => {
-            const item = game.items.get(li.data("entityId"));
-            return !item.getFlag("alpha", "isTemplate");
-        },
-        callback: li => {
-            const item = game.items.get(li.data("entityId"));
-            item.setFlag("alpha", "isTemplate", true);
-        }
-    });
+Hooks.on('getItemDirectoryEntryContext', (html, options) => {
+  // Define an item as a template.
+  options.push({
+    name: game.i18n.localize('SIMPLE.DefineTemplate'),
+    icon: '<i class="fas fa-stamp"></i>',
+    condition: li => {
+      const item = game.items.get(li.data('entityId'))
+      return !item.getFlag('alpha', 'isTemplate')
+    },
+    callback: li => {
+      const item = game.items.get(li.data('entityId'))
+      item.setFlag('alpha', 'isTemplate', true)
+    },
+  })
 
-    // Undefine an item as a template.
-    options.push({
-        name: game.i18n.localize("SIMPLE.UnsetTemplate"),
-        icon: '<i class="fas fa-times"></i>',
-        condition: li => {
-            const item = game.items.get(li.data("entityId"));
-            return item.getFlag("alpha", "isTemplate");
-        },
-        callback: li => {
-            const item = game.items.get(li.data("entityId"));
-            item.setFlag("alpha", "isTemplate", false);
-        }
-    });
-});
+  // Undefine an item as a template.
+  options.push({
+    name: game.i18n.localize('SIMPLE.UnsetTemplate'),
+    icon: '<i class="fas fa-times"></i>',
+    condition: li => {
+      const item = game.items.get(li.data('entityId'))
+      return item.getFlag('alpha', 'isTemplate')
+    },
+    callback: li => {
+      const item = game.items.get(li.data('entityId'))
+      item.setFlag('alpha', 'isTemplate', false)
+    },
+  })
+})
 
-
-async function _onCreateEntity(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    return _simpleDirectoryTemplates(this, event);
+async function _onCreateEntity (event) {
+  event.preventDefault()
+  event.stopPropagation()
+  return _simpleDirectoryTemplates(this, event)
 }
 
-ActorDirectory.prototype._onCreateEntity = _onCreateEntity; // For 0.7.x+
-ItemDirectory.prototype._onCreateEntity = _onCreateEntity;
-ActorDirectory.prototype._onCreate = _onCreateEntity; // TODO: for 0.6.6
-ItemDirectory.prototype._onCreate = _onCreateEntity;
+ActorDirectory.prototype._onCreateEntity = _onCreateEntity // For 0.7.x+
+ItemDirectory.prototype._onCreateEntity = _onCreateEntity
+ActorDirectory.prototype._onCreate = _onCreateEntity // TODO: for 0.6.6
+ItemDirectory.prototype._onCreate = _onCreateEntity
 
 /**
  * Display the entity template dialog.
@@ -205,52 +204,51 @@ ItemDirectory.prototype._onCreate = _onCreateEntity;
  * @param {EntityCollection} entityType - The sidebar tab
  * @param {MouseEvent} event - Triggering event
  */
-async function _simpleDirectoryTemplates(collection, event)
-{
-    // Retrieve the collection and find any available templates
-    const entityCollection = collection.tabName === "actors" ?
-          game.actors : game.items;
-    const cls = collection.tabName === "actors" ? Actor : Item;
-    let templates = entityCollection.filter(
-        a => a.getFlag("alpha", "isTemplate"));
-    let ent = game.i18n.localize(cls.config.label);
+async function _simpleDirectoryTemplates (collection, event) {
+  // Retrieve the collection and find any available templates
+  const entityCollection = collection.tabName === 'actors'
+    ? game.actors : game.items
+  const cls = collection.tabName === 'actors' ? Actor : Item
+  const templates = entityCollection.filter(
+    a => a.getFlag('alpha', 'isTemplate'))
+  const ent = game.i18n.localize(cls.config.label)
 
-    // Setup default creation data
-    let type = collection.tabName === "actors" ? 'character' : 'item';
-    let createData = {
-        name: `${game.i18n.localize("SIMPLE.New")} ${ent}`,
-        type: type,
-        folder: event.currentTarget.dataset.folder
-    };
-    if ( !templates.length ) return cls.create(createData, {renderSheet: true});
+  // Setup default creation data
+  const type = collection.tabName === 'actors' ? 'character' : 'item'
+  let createData = {
+    name: `${game.i18n.localize('SIMPLE.New')} ${ent}`,
+    type: type,
+    folder: event.currentTarget.dataset.folder,
+  }
+  if (!templates.length) return cls.create(createData, { renderSheet: true })
 
-    // Build an array of types for the form, including an empty default.
-    let types = [{
-        value: null,
-        label: game.i18n.localize("SIMPLE.NoTemplate")
-    }].concat(templates.map(a => { return { value: a.id, label: a.name } }));
+  // Build an array of types for the form, including an empty default.
+  const types = [{
+    value: null,
+    label: game.i18n.localize('SIMPLE.NoTemplate'),
+  }].concat(templates.map(a => { return { value: a.id, label: a.name } }))
 
-    // Render the confirmation dialog window
-    const templateData = {upper: ent, lower: ent.toLowerCase(), types: types};
-    const dlg = await renderTemplate(
+  // Render the confirmation dialog window
+  const templateData = { upper: ent, lower: ent.toLowerCase(), types: types }
+  const dlg = await renderTemplate(
         `systems/alpha/templates/sidebar/entity-create.html`,
-        templateData);
-    return Dialog.confirm({
-        title: `${game.i18n.localize("SIMPLE.Create")} ${createData.name}`,
-        content: dlg,
-        yes: html => {
-            const form = html[0].querySelector("form");
-            const template = entityCollection.get(form.type.value);
-            if ( template ) {
-                createData = mergeObject(template.data, createData,
-                                         {inplace: false});
-                createData.type = template.data.type;
-                delete createData.flags.alpha.isTemplate;
-            }
-            createData.name = form.name.value;
-            return cls.create(createData, {renderSheet: true});
-        },
-        no: () => {},
-        defaultYes: false
-    });
+        templateData)
+  return Dialog.confirm({
+    title: `${game.i18n.localize('SIMPLE.Create')} ${createData.name}`,
+    content: dlg,
+    yes: html => {
+      const form = html[0].querySelector('form')
+      const template = entityCollection.get(form.type.value)
+      if (template) {
+        createData = mergeObject(template.data, createData,
+          { inplace: false })
+        createData.type = template.data.type
+        delete createData.flags.alpha.isTemplate
+      }
+      createData.name = form.name.value
+      return cls.create(createData, { renderSheet: true })
+    },
+    no: () => {},
+    defaultYes: false,
+  })
 }
