@@ -47,9 +47,11 @@ export class SimpleActorSheet extends ActorSheet
         html.find(".skill-rank")
             .on("input", this._submit_skill_rank.bind(this));
 
-        html.find(".dicepool-roll")
-            .on("click", this._on_dice_pool_roll.bind(this));
+        // Handle rolling attributes
+        html.find(".attribute-roll")
+            .on("click", this._on_attribute_roll.bind(this));
 
+        // Handle rolling of skills
         html.find(".skill-roll")
             .on("click", this._on_skill_roll.bind(this));
 
@@ -144,10 +146,11 @@ export class SimpleActorSheet extends ActorSheet
         this._roll_dicepool(value, skill_name);
     }
 
-    _on_dice_pool_roll(event)
+    _on_attribute_roll(event)
     {
         let button = $(event.currentTarget);
         let attribute = button.siblings("input")[0];
+        let attribute_name = attribute.id;
         if (attribute == undefined) {
             return;
         }
@@ -155,21 +158,7 @@ export class SimpleActorSheet extends ActorSheet
         if (value == undefined || value == "" || value == 0) {
             return;
         }
-        let r = new Roll(value + "d6", this.actor.getRollData());
-        let success = 0;
-        r.evaluate();
-        r.terms[0].results.forEach(function (i, idx) {
-            if (i.result >= 6) {
-                success += 2;
-            } else if (i.result >= 4) {
-                success += 1;
-            }
-        });
-        r.toMessage({
-            user: game.user._id,
-            speaker: ChatMessage.getSpeaker({actor: this.actor}),
-            flavor: `<h2>Successes: ${success}</h2>`
-        });
+        this._roll_dicepool(value, attribute_name);
     }
 
     /**
