@@ -87,9 +87,8 @@ Hooks.once('init', async function () {
           game.i18n.localize('SIMPLE.NotifyInitFormulaUpdated') +
                         ` ${formula}`)
       }
-    }
-    // Otherwise, fall back to a d20.
-    catch (error) {
+    } catch (error) {
+      // Otherwise, fall back to a d20.
       CONFIG.Combat.initiative.formula = '1d20'
       if (notify) {
         ui.notifications.error(
@@ -207,7 +206,8 @@ ItemDirectory.prototype._onCreate = _onCreateEntity
 async function _simpleDirectoryTemplates (collection, event) {
   // Retrieve the collection and find any available templates
   const entityCollection = collection.tabName === 'actors'
-    ? game.actors : game.items
+    ? game.actors
+    : game.items
   const cls = collection.tabName === 'actors' ? Actor : Item
   const templates = entityCollection.filter(
     a => a.getFlag('alpha', 'isTemplate'))

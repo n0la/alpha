@@ -1,8 +1,10 @@
 {
   "compilerOptions": {
     "allowJs": true,
+    "checkJs": true,
     "skipLibCheck": true,
     "outDir": "dist",
+    "moduleResolution": "Node",
     "lib": [
       "DOM",
       "DOM.Iterable",
