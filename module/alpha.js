@@ -93,7 +93,7 @@ Hooks.once('init', async function () {
       if (notify) {
         ui.notifications.error(
           game.i18n.localize('SIMPLE.NotifyInitFormulaInvalid') +
-                        ` ${formula}`)
+          ` ${formula}`)
       }
     }
   }

@@ -1,0 +1,173 @@
+<div class="tab attributes"
+     data-group="primary"
+     data-tab="attributes">
+
+  <div class="resource">
+    <h2>Core Attributes:</h2>
+
+    <div class="grid grid-4col">
+      <div style="background-color: black; color: white; font-size: 12pt;">
+        PHY
+        <div style="font-size: 8pt">PHYSIQUE</div>
+      </div>
+      <input type="number"
+              data-dtype="Number"
+              name="data.physique.value"
+              value="{{data.physique.value}}"
+              style="width: 100%; height: 100%; border: 2px solid black; border-radius: 0;" />
+      <input type="number"
+              data-dtype="Number"
+              name="data.physique.temp"
+              value="{{data.physique.temp}}"
+              style="width: 100%; height: 100%; border: 1px dashed black; border-radius: 0;" />
+      <div>
+        <a class="dicepool-roll flex-center"
+           style="width: 30px; height: 30px;">
+          <i class="fas fa-dice"></i>
+        </a>
+      </div>
+    </div>
+
+    <div style="display: flex; align-items: center; justify-content: center;">
+      <span>PHY</span>
+      <a class="dicepool-roll flex-center"
+         style="width: 30px; height: 30px;">
+        <i class="fas fa-dice"></i>
+      </a>
+    </div>
+
+    <p>
+      MOT:
+      <input type="number"
+             data-dtype="Number"
+             name="data.motorics.value"
+             value="{{data.motorics.value}}" />
+      <a class="dicepool-roll">
+        <i class="fas fa-dice"></i>
+      </a>
+    </p>
+    <p>
+      INT:
+      <input type="number"
+             data-dtype="Number"
+             name="data.intellect.value"
+             value="{{data.intellect.value}}" />
+      <a class="dicepool-roll">
+        <i class="fas fa-dice"></i>
+      </a>
+    </p>
+    <p>
+      PSY:
+      <input type="number"
+             data-dtype="Number"
+             name="data.psyche.value"
+             value="{{data.psyche.value}}" />
+      <a class="dicepool-roll">
+        <i class="fas fa-dice"></i>
+      </a>
+    </p>
+    <h2>Secondary Attributes</h2>
+    <p>
+      Composure:
+      <input type="number"
+             data-dtype="Number"
+             name="data.composure.value"
+             value="{{data.composure.value}}"
+             placeholder="Intellect + Psyche" />
+      <a class="dicepool-roll">
+        <i class="fas fa-dice"></i>
+      </a>
+    </p>
+    <p>
+      Endurance:
+      <input type="number"
+             data-dtype="Number"
+             name="data.endurance.value"
+             value="{{data.endurance.value}}"
+             placeholder="Physique + Motorics" />
+      <a class="dicepool-roll">
+        <i class="fas fa-dice"></i>
+      </a>
+    </p>
+    <p>
+      Focus:
+      <input type="number"
+             data-dtype="Number"
+             name="data.focus.value"
+             value="{{data.focus.value}}"
+             placeholder="Motorics + Psyche" />
+      <a class="dicepool-roll">
+        <i class="fas fa-dice"></i>
+      </a>
+    </p>
+    <p>
+      Vigilance:
+      <input type="number"
+             data-dtype="Number"
+             name="data.vigilance.value"
+             value="{{data.vigilance.value}}"
+             placeholder="Physique + Intellect" />
+      <a class="dicepool-roll">
+        <i class="fas fa-dice"></i>
+      </a>
+    </p>
+  </div>
+  <div class="resource">
+    <h2>Other Attributes:</h2>
+    <p>
+      Pace: <input type="number"
+             data-dtype="Number"
+             name="data.pace.value"
+             value="{{data.pace.value}}" />
+    </p>
+    <p>
+      Size: <input type="number"
+             data-dtype="Number"
+             name="data.size.value"
+             value="{{data.size.value}}" />
+    </p>
+    <h2>Stats:</h2>
+    <p>
+      Resilience: <input type="number"
+             data-dtype="Number"
+             name="data.resilience.value"
+             value="{{data.resilience.value}}"
+             placeholder="(Size + Endurance) / 2" />
+    </p>
+    <p>
+      Willpower: <input type="number"
+             data-dtype="Number"
+             name="data.willpower.value"
+             value="{{data.willpower.value}}"
+             placeholder="(5 + Composure) / 2" />
+      <a class="dicepool-roll">
+        <i class="fas fa-dice"></i>
+      </a>
+    </p>
+    <h2>Resource and Wealth</h2>
+    <p>
+      Wealth:
+      <input type="number"
+             data-dtype="Number"
+             name="data.wealth.value"
+             value="{{data.wealth.value}}" />
+      <a class="dicepool-roll">
+        <i class="fas fa-dice"></i>
+      </a>
+    <p>
+      Resources:
+      <input type="number"
+             data-dtype="Number"
+             name="data.resource.value"
+             value="{{data.resource.value}}" />
+    </p>
+    <p>
+      Trade Goods:
+      <input type="number"
+             data-dtype="Number"
+             name="data.tradegoods.value"
+             value="{{data.tradegoods.value}}" />
+    </p>
+
+  </div>
+</div>

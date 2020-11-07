@@ -16,13 +16,13 @@
                        placeholder="Name" />
             </h1>
             <div class="resource">
-                Level: <input name="level"
+                Level: <input name="data.level.value"
                        type="number"
                        value="{{data.level.value}}"
                        placeholder="Level" />
             </div>
             <div class="resource">
-                XP: <input name="xp"
+                XP: <input name="data.xp.value"
                        type="number"
                        value="{{data.xp.value}}"
                        placeholder="XP" />
@@ -34,153 +34,20 @@
     <nav class="sheet-tabs tabs"
          data-group="primary">
         <a class="item"
-           data-tab="description">Description</a>
-        <a class="item"
            data-tab="attributes">Attributes</a>
+        <a class="item"
+           data-tab="skills">Skills</a>
         <a class="item"
            data-tab="items">Items</a>
     </nav>
 
     {{!-- Sheet Body --}}
     <section class="sheet-body">
-        <div class="tab attributes"
-             data-group="primary"
-             data-tab="attributes">
-            <div class="resource">
-                <h2>Core Attributes:</h2>
-                <p>
-                    PHY:
-                    <input type="number"
-                           data-dtype="Number"
-                           name="data.physique.value"
-                           value="{{data.physique.value}}" />
-                    <a class="dicepool-roll">Roll</a>
-                </p>
-                <p>
-                    MOT:
-                    <input type="number"
-                           data-dtype="Number"
-                           name="data.motorics.value"
-                           value="{{data.motorics.value}}" />
-                    <a class="dicepool-roll">Roll</a>
-                </p>
-                <p>
-                    INT:
-                    <input type="number"
-                           data-dtype="Number"
-                           name="data.intellect.value"
-                           value="{{data.intellect.value}}" />
-                    <a class="dicepool-roll">Roll</a>
-                </p>
-                <p>
-                    PSY:
-                    <input type="number"
-                           data-dtype="Number"
-                           name="data.psyche.value"
-                           value="{{data.psyche.value}}" />
-                    <a class="dicepool-roll">Roll</a>
-                </p>
-                <h2>Secondary Attributes</h2>
-                <p>
-                    Composure:
-                    <input type="number"
-                           data-dtype="Number"
-                           name="data.composure.value"
-                           value="{{data.composure.value}}"
-                           placeholder="Intellect + Psyche" />
-                    <a class="dicepool-roll">Roll</a>
-                </p>
-                <p>
-                    Endurance:
-                    <input type="number"
-                           data-dtype="Number"
-                           name="data.endurance.value"
-                           value="{{data.endurance.value}}"
-                           placeholder="Physique + Motorics" />
-                    <a class="dicepool-roll">Roll</a>
-                </p>
-                <p>
-                    Focus:
-                    <input type="number"
-                           data-dtype="Number"
-                           name="data.focus.value"
-                           value="{{data.focus.value}}"
-                           placeholder="Motorics + Psyche" />
-                    <a class="dicepool-roll">Roll</a>
-                </p>
-                <p>
-                    Vigilance:
-                    <input type="number"
-                           data-dtype="Number"
-                           name="data.vigilance.value"
-                           value="{{data.vigilance.value}}"
-                           placeholder="Physique + Intellect" />
-                    <a class="dicepool-roll">Roll</a>
-                </p>
-            </div>
-            <div class="resource">
-                <h2>Other Attributes:</h2>
-                <p>
-                    Pace: <input type="number"
-                           data-dtype="Number"
-                           name="data.pace.value"
-                           value="{{data.pace.value}}" />
-                </p>
-                <p>
-                    Size: <input type="number"
-                           data-dtype="Number"
-                           name="data.size.value"
-                           value="{{data.size.value}}" />
-                </p>
-                <h2>Stats:</h2>
-                <p>
-                    Resilience: <input type="number"
-                           data-dtype="Number"
-                           name="data.resilience.value"
-                           value="{{data.resilience.value}}"
-                           placeholder="(Size + Endurance) / 2" />
-                    <a class="dicepool-roll">Roll</a>
-                </p>
-                <p>
-                    Willpower: <input type="number"
-                           data-dtype="Number"
-                           name="data.willpower.value"
-                           value="{{data.willpower.value}}"
-                           placeholder="(5 + Composure) / 2" />
-                    <a class="dicepool-roll">Roll</a>
-                </p>
-                <h2>Resource and Wealth</h2>
-                <p>
-                    Wealth:
-                    <input type="number"
-                           data-dtype="Number"
-                           name="data.wealth.value"
-                           value="{{data.wealth.value}}" />
-                    <a class="dicepool-roll">Roll</a>
-                <p>
-                    Resources:
-                    <input type="number"
-                           data-dtype="Number"
-                           name="data.resource.value"
-                           value="{{data.resource.value}}" />
-                </p>
-                <p>
-                    Trade Goods:
-                    <input type="number"
-                           data-dtype="Number"
-                           name="data.tradegoods.value"
-                           value="{{data.tradegoods.value}}" />
-                </p>
+        {{!-- Attributes Tab --}}
+        {{> "systems/alpha/templates/sheet/attributes.html" }}
 
-            </div>
-        </div>
-
-        {{!-- Biography Tab --}}
-        <div class="tab biography"
-             data-group="primary"
-             data-tab="description">
-            {{editor content=data.biography target="data.biography" button=true owner=owner editable=editable}}
-        </div>
+        {{!-- Skills Tab --}}
+        {{> "systems/alpha/templates/sheet/skills.html" }}
 
         {{!-- Owned Items Tab --}}
         <div class="tab items"

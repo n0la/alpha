@@ -9,6 +9,9 @@ export const preloadHandlebarsTemplates = async function () {
     // Attribute list partial.
     'systems/alpha/templates/parts/sheet-attributes.html',
     'systems/alpha/templates/parts/sheet-groups.html',
+    // Character Sheet
+    'systems/alpha/templates/sheet/attributes.html',
+    'systems/alpha/templates/sheet/skills.html',
   ]
 
   // Load the template parts

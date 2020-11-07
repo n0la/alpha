@@ -14,9 +14,9 @@ export class SimpleActorSheet extends ActorSheet {
       tabs: [{
         navSelector: '.sheet-tabs',
         contentSelector: '.sheet-body',
-        initial: 'description',
+        initial: 'attributes',
       }],
-      scrollY: ['.biography', '.items', '.attributes'],
+      scrollY: ['.skills', '.items', '.attributes'],
       dragDrop: [{ dragSelector: '.item-list .item', dropSelector: null }],
     })
   }
@@ -89,19 +89,18 @@ export class SimpleActorSheet extends ActorSheet {
     if (value == null || value === '' || value === 0) return
 
     const r = new Roll(value + 'd6', this.actor.getRollData())
-    let success = 0
     r.evaluate()
-    r.terms[0].results.forEach(function (i, idx) {
-      if (i.result >= 6) {
-        success += 2
-      } else if (i.result >= 4) {
-        success += 1
-      }
-    })
+
+    const successes = r.terms[0].results.reduce((sum, { result }) => {
+      if (result >= 6) sum += 2
+      else if (result >= 4) sum += 1
+      return sum
+    }, 0)
+
     r.toMessage({
       user: game.user._id,
       speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-      flavor: `<h2>Successes: ${success}</h2>`,
+      flavor: `<h2>Successes: ${successes}</h2>`,
     })
   }
 
@@ -123,6 +122,7 @@ export class SimpleActorSheet extends ActorSheet {
 
   /** @override */
   _updateObject (event, formData) {
+    console.log(formData)
     formData = EntitySheetHelper.updateAttributes(formData, this)
     formData = EntitySheetHelper.updateGroups(formData, this)
     return this.object.update(formData)
