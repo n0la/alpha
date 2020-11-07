@@ -45,6 +45,9 @@ export class SimpleActorSheet extends ActorSheet
         html.find(".dicepool-roll")
             .on("click", this._on_dice_pool_roll.bind(this));
 
+        html.find(".skill-roll")
+            .on("click", this._on_skill_roll.bind(this));
+
         // Update Inventory Item
         html.find('.item-edit').click(ev => {
             const li = $(ev.currentTarget).parents(".item");
@@ -77,6 +80,48 @@ export class SimpleActorSheet extends ActorSheet
         html.find(".groups")
             .on("click", ".group-control",
                 EntitySheetHelper.onClickAttributeGroupControl.bind(this));
+    }
+
+    _roll_dicepool(sides, flavour) {
+        let r = new Roll(sides + "d6", this.actor.getRollData());
+        let success = 0;
+        let f = "";
+        r.evaluate();
+        r.terms[0].results.forEach(function (i, idx) {
+            if (i.result >= 6) {
+                success += 2;
+            } else if (i.result >= 4) {
+                success += 1;
+            }
+        });
+
+        if (flavour == undefined) {
+            f = `<h2>Successes: ${success}</h2>`;
+        } else {
+            f = `<h2>${flavour}: ${success} Successes</h2>`;
+        }
+
+        r.toMessage({
+            user: game.user._id,
+            speaker: ChatMessage.getSpeaker({actor: this.actor}),
+            flavor: f
+        });
+
+    }
+
+    _on_skill_roll(event)
+    {
+        let button = $(event.currentTarget);
+        let skill_name = button[0].id.replace("-roll", "");
+        let total = button.siblings("input.total")[0];
+        if (total == undefined) {
+            return;
+        }
+        let value = total.value;
+        if (value == undefined || value == "" || value == 0) {
+            return;
+        }
+        this._roll_dicepool(value, skill_name);
     }
 
     _on_dice_pool_roll(event)

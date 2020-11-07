@@ -1,4 +1,5 @@
 import { EntitySheetHelper } from "./helper.js";
+import { alpha_skills, AlphaSkill } from "./alpha-system.js";
 
 /**
  * Extend the base Actor entity by defining a custom roll data structure
@@ -10,6 +11,13 @@ export class SimpleActor extends Actor
     /** @override */
     prepareData() {
         super.prepareData();
+        if (this.skills == undefined) {
+            this.skills = [];
+            alpha_skills.forEach((s) => {
+                this.skills.push(new AlphaSkill(s));
+            });
+        }
+        this.data.data.skills = this.data.data.skills || this.skills;
         this.data.data.groups = this.data.data.groups || {};
         this.data.data.attributes = this.data.data.attributes || {};
     }

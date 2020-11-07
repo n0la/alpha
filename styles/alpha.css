@@ -112,6 +112,43 @@
   flex: none;
   width: auto;
 }
+.alpha .skill-list {
+  list-style: none;
+  margin: 7px 0;
+  padding: 0;
+  overflow-y: auto;
+}
+.alpha .skill-list .skill {
+  min-height: 30px;
+  line-height: 24px;
+  padding: 3px 0;
+  border-bottom: 1px solid #BBB;
+  align-items: stretch;
+}
+.alpha .skill-list .skill img {
+  flex: 0 0 24px;
+  margin-right: 5px;
+}
+.alpha .skill-list .skill-name {
+  margin: 0;
+}
+.alpha .skill-list .skill-controls {
+  flex: 0 0 36px;
+}
+.alpha .skill-list .skill-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  flex: 2;
+  justify-content: flex-start;
+}
+.alpha .skill-list .skill-button {
+  line-height: 1;
+  font-size: 11px;
+  flex: none;
+  width: auto;
+}
 .alpha .attributes {
   position: relative;
 }
