@@ -12,9 +12,9 @@ export class SimpleActor extends Actor
     prepareData() {
         super.prepareData();
         if (this.skills == undefined) {
-            this.skills = [];
+            this.skills = {};
             alpha_skills.forEach((s) => {
-                this.skills.push(new AlphaSkill(s));
+                this.skills[s.id] = new AlphaSkill(s);
             });
         }
         this.data.data.skills = this.data.data.skills || this.skills;

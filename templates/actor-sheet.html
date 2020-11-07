@@ -166,19 +166,21 @@
             <ol class="skill-list">
                 {{#each data.skills as |skill|}}
                 <li class="skill flexrow" data-item-id="{{skill.id}}">
-                    <h4 class="skill-name">
-                        {{skill.name}}:
-                    </h4>
-                    <input type="number" class="rank"
+                    <h3 class="skill-name">{{skill.name}}:</h3>
+                    <input type="number" class="skill-rank"
+                           id="{{skill.id}}-rank"
                            value="{{skill.rank}}"
                            placeholder="Rank"
                            />
                     +
-                    <input type="number" class="attribute"
-                           value="{{skill.attribute_value}}">
+                    <input type="number"
+                           value="{{skill.attribute_modifier}}"
+                           placeholder="Attribute Modifier"/>
                     =
                     <input type="number" class="total"
-                           value="{{skill.total}}">
+                           value="{{skill.total}}"
+                           placeholder="Total">
+                    &nbsp;
                     <a class="skill-roll" id="{{skill.name}}-roll">Roll</a>
                 </li>
                 {{/each}}

@@ -20,18 +20,24 @@ export const alpha_skills = [
     { "name": "Survival", "id": "survival", "attribute": "intellect" }
 ];
 
+/* Theoretically this represents a skill of a player. But sadly Foundry
+ * cannot store objects with attributes/functions server side, unless they
+ * are entities. And making our own entities blows the scope of this little
+ * project quite a bit.
+ */
 export class AlphaSkill
 {
     constructor(slug) {
         this.name = slug.name;
         this.id = slug.id;
         this.attribute = slug.attribute;
-        this.attribute_value = 0;
+        this.attribute_modifier = 0;
         this.modifier = 0;
+        this.total = 0;
         this.rank = 0;
     }
 
-    get total() {
-        return this.attribute_value + this.rank + this.modifier;
+    static update_total(skill) {
+        skill.total = skill.rank + skill.modifier + skill.attribute_modifier;
     }
 };

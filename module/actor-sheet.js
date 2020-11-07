@@ -1,4 +1,5 @@
 import { EntitySheetHelper } from "./helper.js";
+import { AlphaSkill } from "./alpha-system.js";
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -42,6 +43,10 @@ export class SimpleActorSheet extends ActorSheet
             .on("click", "a.attribute-roll",
                 EntitySheetHelper.onAttributeRoll.bind(this));
 
+        // Handle saving of skill ranks
+        html.find(".skill-rank")
+            .on("input", this._submit_skill_rank.bind(this));
+
         html.find(".dicepool-roll")
             .on("click", this._on_dice_pool_roll.bind(this));
 
@@ -80,6 +85,21 @@ export class SimpleActorSheet extends ActorSheet
         html.find(".groups")
             .on("click", ".group-control",
                 EntitySheetHelper.onClickAttributeGroupControl.bind(this));
+    }
+
+    _submit_skill_rank(event) {
+        let input = $(event.currentTarget);
+        let id = input[0].id.replace("-rank", "");
+        let rank = input[0].value;
+
+        if (id == undefined || rank == undefined) {
+            return;
+        }
+
+        let skills = this.actor.data.data.skills;
+        skills[id].rank = parseInt(rank);
+        AlphaSkill.update_total(skills[id]);
+        this.actor.update({'data.skills': skills});
     }
 
     _roll_dicepool(sides, flavour) {
