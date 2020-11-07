@@ -1,5 +1,8 @@
 import { EntitySheetHelper } from "./helper.js";
-import { AlphaSkill } from "./alpha-system.js";
+import {
+    AlphaSkill,
+    alpha_core_attributes
+} from "./alpha-system.js";
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -87,6 +90,36 @@ export class SimpleActorSheet extends ActorSheet
         html.find(".groups")
             .on("click", ".group-control",
                 EntitySheetHelper.onClickAttributeGroupControl.bind(this));
+    }
+
+    /* checks if any core attribute has changed, and updates
+     * dependant values, such as skill
+     */
+    _update_core_attributes(formData) {
+        alpha_core_attributes.forEach((attr) => {
+            let key = `data.${attr}.value`;
+            if (formData[key] != undefined &&
+                formData[key] != this.actor.data[key]) {
+                this._update_core_attribute(attr, formData[key]);
+            }
+        });
+    }
+
+    _update_core_attribute(attribute_name, new_rank) {
+        let skills = this.actor.data.data.skills;
+        for (var skill_name in skills) {
+            let skill = skills[skill_name];
+            if (skill.attribute != undefined &&
+                skill.attribute == attribute_name) {
+                /* update modifier, and total */
+                skill.attribute_modifier = new_rank;
+                AlphaSkill.update_total(skill);
+            }
+        }
+        this.actor.update({'data.skills': skills});
+
+        /* TODO: update composite attributes such as endurance
+         */
     }
 
     _submit_skill_rank(event) {
@@ -182,6 +215,10 @@ export class SimpleActorSheet extends ActorSheet
     _updateObject(event, formData) {
         formData = EntitySheetHelper.updateAttributes(formData, this);
         formData = EntitySheetHelper.updateGroups(formData, this);
-        return this.object.update(formData);
+        let ret = this.object.update(formData);
+        /* check if we need to update any dependant values
+         */
+        this._update_core_attributes(formData);
+        return ret;
     }
 }
