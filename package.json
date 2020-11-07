@@ -1,6 +1,6 @@
 {
     "name": "Alpha",
-    "version": "0.1",
+    "version": "0.0.1",
     "description": "Foundry support for Alpha",
     "scripts": {
         "fix": "eslint --fix module",
