@@ -150,25 +150,12 @@ export class SimpleActorSheet extends ActorSheet
             damage.length = this.actor.health;
         }
 
-        if (type == 1) {
-            let done = false;
-            /* shocking damage, find the first damage block thats free */
-            for (i = 0; i < damage.length; i++) {
-                if (damage[i] == 0 || damage[i] == undefined) {
-                    damage[i] = 1;
-                    done = true;
-                    break;
-                }
-            }
-        } else if (type > 1) {
-            let len = damage.length;
-            let i = 0;
+        let len = damage.length;
 
-            for (i = 0; type <= damage[i] && i < len; i++)
-                ;
-            damage.splice(i, 0, type);
-            damage.length = len;
-        }
+        for (i = 0; type <= damage[i] && i < len; i++)
+            ;
+        damage.splice(i, 0, type);
+        damage.length = len;
 
         this.actor.update({'data.damage': damage});
     }
