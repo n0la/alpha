@@ -6,6 +6,7 @@ export class RollHelper
         let r = new Roll(sides + "d6", actor.getRollData());
         let success = 0;
         let f = "";
+        let str = "Successes";
         r.evaluate();
         r.terms[0].results.forEach(function (i, idx) {
             if (i.result >= 6) {
@@ -15,10 +16,14 @@ export class RollHelper
             }
         });
 
+        if (success == 1) {
+            str = "Success";
+        }
+
         if (flavour == undefined) {
-            f = `<h2>Successes: ${success}</h2>`;
+            f = `<h2>${str}: ${success}</h2>`;
         } else {
-            f = `<h2>${flavour}: ${success} Successes</h2>`;
+            f = `<h2>${flavour}: ${success} ${str}</h2>`;
         }
 
         r.toMessage({
