@@ -10,6 +10,7 @@ import { SimpleActor } from "./actor.js";
 import { SimpleActorSheet } from "./actor-sheet.js";
 import { AlphaItemSheet } from "./item-sheet.js";
 import { AlphaWeaponSheet } from "./weapon-sheet.js";
+import { AlphaArmourSheet } from "./armour-sheet.js";
 import { preloadHandlebarsTemplates } from "./templates.js";
 import { createAlphaMacro } from "./macro.js";
 import {
@@ -50,9 +51,9 @@ Hooks.once("init", async function() {
     Actors.registerSheet("alpha", SimpleActorSheet,
                          { makeDefault: true });
     Items.unregisterSheet("core", ItemSheet);
-    Items.registerSheet("alpha", AlphaItemSheet,
-                        { makeDefault: true });
+    Items.registerSheet("alpha", AlphaItemSheet, { makeDefault: true });
     Items.registerSheet("alpha", AlphaWeaponSheet);
+    Items.registerSheet("alpha", AlphaArmourSheet);
 
     // Register system settings
     game.settings.register("alpha", "macroShorthand", {

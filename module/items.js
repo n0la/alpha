@@ -61,3 +61,14 @@ export class AlphaWeapon extends AlphaItem
         return (this.data.skill.value == "gunnery");
     }
 }
+
+export class AlphaArmour extends AlphaItem
+{
+    /** @override */
+    _initialize() {
+        super._initialize();
+        this.data.rating = {value: 0};
+        this.data.hazard = {value: 0};
+        this.data.sealed = {value: false};
+    }
+}

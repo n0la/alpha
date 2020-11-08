@@ -1,0 +1,46 @@
+<form class="flexcol {{cssClass}}" autocomplete="off">
+
+    {{> "systems/alpha/templates/parts/sheet-item-header.html" }}
+
+    {{!-- Sheet Tab Navigation --}}
+    <nav class="sheet-tabs tabs" data-group="primary">
+        <a class="item" data-tab="description">Description</a>
+        <a class="item" data-tab="common">Common</a>
+        <a class="item" data-tab="attributes">Attributes</a>
+    </nav>
+
+    {{!-- Sheet Body --}}
+    <section class="sheet-body">
+
+        {{> "systems/alpha/templates/parts/sheet-item-description.html" }}
+
+        {{> "systems/alpha/templates/parts/sheet-item-common.html" }}
+
+        {{!-- Attributes Tab --}}
+        <div class="tab attributes" data-group="primary" data-tab="attributes">
+            <div class="resource">
+                <p>
+                    <label>Armour Rating:</label>
+                    <input type="number"
+                           value="{{data.rating.value}}"
+                           name="data.rating.value" />
+                </p>
+                <p>
+                    <label>Hazard Rating:</label>
+                    <input type="number"
+                           value="{{data.hazard.value}}"
+                           name="data.hazard.value" />
+                </p>
+                <p>
+                    <label>Sealed:</label>
+                    <input type="checkbox"
+                           name="data.sealed.value"
+                           {{#if data.sealed.value}}
+                           checked
+                           {{/if}}
+                           />
+                </p>
+            </div>
+        </div>
+    </section>
+</form>
