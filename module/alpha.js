@@ -7,9 +7,9 @@
 
 // Import Modules
 import { SimpleActor } from "./actor.js";
+import { SimpleActorSheet } from "./actor-sheet.js";
 import { AlphaItemSheet } from "./item-sheet.js";
 import { AlphaWeaponSheet } from "./weapon-sheet.js";
-import { SimpleActorSheet } from "./actor-sheet.js";
 import { preloadHandlebarsTemplates } from "./templates.js";
 import { createAlphaMacro } from "./macro.js";
 import {

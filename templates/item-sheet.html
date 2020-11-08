@@ -5,7 +5,7 @@
     {{!-- Sheet Tab Navigation --}}
     <nav class="sheet-tabs tabs" data-group="primary">
         <a class="item" data-tab="description">Description</a>
-        <a class="item" data-tab="attributes">Attributes</a>
+        <a class="item" data-tab="common">Common</a>
     </nav>
 
     {{!-- Sheet Body --}}
@@ -13,42 +13,7 @@
 
         {{> "systems/alpha/templates/parts/sheet-item-description.html" }}
 
-        {{!-- Attributes Tab --}}
-        <div class="tab attributes" data-group="primary" data-tab="attributes">
-            <header class="attributes-header flexrow">
-                <span class="attribute-key">
-                    {{localize "SIMPLE.AttributeKey"}}
-                </span>
-                <span class="attribute-value">
-                    {{localize "SIMPLE.AttributeValue"}}
-                </span>
-                <span class="attribute-label">
-                    {{localize "SIMPLE.AttributeLabel"}}
-                </span>
-                <span class="attribute-dtype">
-                    {{localize "SIMPLE.AttributeDtype"}}</span>
-                <a class="attribute-control" data-action="create"
-                   data-group="{{group}}">
-                    <i class="fas fa-plus"></i>
-                </a>
-            </header>
+        {{> "systems/alpha/templates/parts/sheet-item-common.html" }}
 
-            {{!-- Render the attribute list partial. --}}
-            {{> "systems/alpha/templates/parts/sheet-attributes.html"
-            attributes=data.ungroupedAttributes dtypes=dtypes}}
-
-            {{!-- Render the grouped attributes partial and control. --}}
-            <div class="groups">
-                {{> "systems/alpha/templates/parts/sheet-groups.html"
-                attributes=data.groupedAttributes groups=data.groups
-                dtypes=dtypes}}
-
-                <div class="group-controls flexrow">
-                    <input class="group-prefix" type="text" val=""/>
-                    <a class="button group-control" data-action="create-group">
-                        <i class="fas fa-plus"></i>Add Attribute Group</a>
-                </div>
-            </div>
-        </div>
     </section>
 </form>
