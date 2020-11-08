@@ -1,0 +1,33 @@
+<header class="sheet-header">
+    <img class="profile-img" src="{{item.img}}" data-edit="img"
+         title="{{item.name}}" />
+    <div class="header-fields">
+        <h1 class="charname">
+            <input name="name" type="text" id="name"
+                   value="{{item.name}}" placeholder="Name" /></h1>
+        <div class="small-resource">
+            <label>Quantity</label>
+            <input type="text" id="quantity"
+                   name="data.quantity"
+                   value="{{data.quantity}}" />
+        </div>
+        <div class="small-resource">
+            <label>Weight</label>
+            <input type="text" id="weight"
+                   name="data.weight"
+                   value="{{data.weight}}" />
+        </div>
+        <div class="small-resource">
+            <label>RES</label>
+            <input type="text" id="resources"
+                   name="data.resources"
+                   value="{{data.resources}}" />
+        </div>
+        <div class="small-resource">
+            <label>VAL</label>
+            <input type="text" id="value"
+                   name="data.value"
+                   value="{{data.value}}" />
+        </div>
+    </div>
+</header>

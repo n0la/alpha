@@ -7,10 +7,15 @@
 
 // Import Modules
 import { SimpleActor } from "./actor.js";
-import { SimpleItemSheet } from "./item-sheet.js";
+import { AlphaItemSheet } from "./item-sheet.js";
+import { AlphaWeaponSheet } from "./weapon-sheet.js";
 import { SimpleActorSheet } from "./actor-sheet.js";
 import { preloadHandlebarsTemplates } from "./templates.js";
 import { createAlphaMacro } from "./macro.js";
+import {
+    AlphaItem,
+    AlphaWeapon,
+} from "./items.js";
 
 /* -------------------------------------------- */
 /*  Foundry VTT Initialization                  */
@@ -38,14 +43,16 @@ Hooks.once("init", async function() {
 
     // Define custom Entity classes
     CONFIG.Actor.entityClass = SimpleActor;
+    CONFIG.Item.entityClass = AlphaItem;
 
     // Register sheet application classes
     Actors.unregisterSheet("core", ActorSheet);
     Actors.registerSheet("alpha", SimpleActorSheet,
                          { makeDefault: true });
     Items.unregisterSheet("core", ItemSheet);
-    Items.registerSheet("alpha", SimpleItemSheet,
+    Items.registerSheet("alpha", AlphaItemSheet,
                         { makeDefault: true });
+    Items.registerSheet("alpha", AlphaWeaponSheet);
 
     // Register system settings
     game.settings.register("alpha", "macroShorthand", {

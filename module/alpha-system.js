@@ -31,6 +31,11 @@ export const alpha_core_attributes = [
  */
 export class AlphaSkill
 {
+    static ALL_SKILLS = alpha_skills.reduce(function(map,obj) {
+        map[obj.id] = obj;
+        return map;
+    });;
+
     constructor(slug) {
         this.name = slug.name;
         this.id = slug.id;

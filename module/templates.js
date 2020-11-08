@@ -9,7 +9,9 @@ export const preloadHandlebarsTemplates = async function()
     const templatePaths = [
         // Attribute list partial.
         "systems/alpha/templates/parts/sheet-attributes.html",
-        "systems/alpha/templates/parts/sheet-groups.html"
+        "systems/alpha/templates/parts/sheet-groups.html",
+        "systems/alpha/templates/parts/sheet-item-header.html",
+        "systems/alpha/templates/parts/sheet-item-description.html"
     ];
 
     // Load the template parts

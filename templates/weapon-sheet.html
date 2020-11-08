@@ -1,0 +1,85 @@
+<form class="flexcol {{cssClass}}" autocomplete="off">
+
+    {{> "systems/alpha/templates/parts/sheet-item-header.html" }}
+
+    <div class="extra-resource">
+        <h3><a class="attack-roll">Attack Roll</a></h3>
+    </div>
+
+    {{!-- Sheet Tab Navigation --}}
+    <nav class="sheet-tabs tabs" data-group="primary">
+        <a class="item" data-tab="description">Description</a>
+        <a class="item" data-tab="attributes">Attributes</a>
+        <a class="item" data-tab="advanced">Advanced</a>
+    </nav>
+
+    {{!-- Sheet Body --}}
+    <section class="sheet-body">
+
+        {{> "systems/alpha/templates/parts/sheet-item-description.html" }}
+
+        {{!-- Attributes Tab --}}
+        <div class="tab attributes" data-group="primary" data-tab="attributes">
+            <div class="resource">
+                <p>
+                    <label>AP:</label>
+                    <input type="number" value="{{data.ap}}"
+                           name="data.ap" />
+                </p>
+                <p>
+                    <label>Damage:</label>
+                    <input type="number" value="{{data.damage}}"
+                           name="data.damage" />
+                </p>
+                <p>
+                    <label>Attack Bonus:</label>
+                    <input type="number" value="{{data.attack_bonus}}"
+                           name="data.attack_bonus" />
+                </p>
+            </div>
+            <div class="resource">
+                <p>
+                    <label>Range:</label>
+                    <input type="text" value="{{data.range}}"
+                           name="data.range" />
+                </p>
+                <p>
+                    <label>Salvo:</label>
+                    <input type="number" value="{{data.salvo}}"
+                           name="data.salvo" />
+                </p>
+                <p>
+                    <label>Throwable:</label>
+                    <input type="checkbox" name="data.throwable"
+                           {{#if data.throwable}}
+                           checked
+                           {{/if}}
+                           />
+                </p>
+
+                <p>
+                    <label>Ammo:</label>
+                    <input type="number"
+                           value="{{data.ammo.value}}"
+                           name="data.ammo.value" />
+                </p>
+                <p>
+                    <label>Magazines:</label>
+                    <input type="number"
+                           value="{{data.magazines.value}}"
+                           name="data.magazines.value" />
+                </p>
+            </div>
+        </div>
+
+        <div class="tab advanced" data-group="primary" data-tab="advanced">
+            <div class="resource">
+                <p>
+                    <label>Skill:</label>
+                    <input type="text" name="data.skill"
+                           value="{{data.skill}}">
+                </p>
+            </div>
+        </div>
+    </section>
+</form>

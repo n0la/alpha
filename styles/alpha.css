@@ -12,7 +12,7 @@
   height: 100%;
 }
 .alpha .sheet-header {
-  flex: 0 0 100px;
+  flex: 0 0 130px;
   overflow: hidden;
   display: flex;
   flex-direction: row;
@@ -46,6 +46,20 @@
   margin-top: 10px;
   float: left;
   text-align: center;
+}
+.alpha .small-resource {
+  width: 25%;
+  height: 40px;
+  margin-top: 10px;
+  float: left;
+  text-align: center;
+}
+.alpha .extra-resource {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  float: left;
+  text-align: center;
+  flex: 0;
 }
 .alpha .resource input {
   width: 100px;
