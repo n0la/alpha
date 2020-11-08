@@ -22,6 +22,37 @@ export class SimpleActor extends Actor
         this.data.data.attributes = this.data.data.attributes || {};
     }
 
+    /** @override */
+    _initialize() {
+        super._initialize();
+
+        this.data.physique = {value: 1};
+        this.data.motorics = {value: 1};
+        this.data.intellect = {value: 1};
+        this.data.psyche = {value: 1};
+
+        this.data.composure = {value: 0};
+        this.data.endurance = {value: 0};
+        this.data.focus = {value: 0};
+        this.data.vigilance = {value: 0};
+
+        this.data.pace = {value: 6};
+        this.data.size = {value: 5};
+
+        this.data.resilience = {value: 0};
+        this.data.willpower = {value: 0};
+        this.data.health = {value: 0};
+        this.data.damage = [];
+
+        this.data.wealth = {value: 0};
+        this.data.resources = {value: 0};
+        this.data.tradegoods = {value: 0};
+    }
+
+    get health() {
+        return this.data.data.health.value;
+    }
+
     /* -------------------------------------------- */
 
     /** @override */

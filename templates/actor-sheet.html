@@ -21,6 +21,25 @@
         </div>
     </header>
 
+    <div class="extra-resource">
+        <p>
+            Damage:
+            {{#each data.damage as |d|}}<strong>{{d}}</strong>{{/each}}
+        </p>
+        <h3>
+            Take Damage:
+            <a class="take-shocking-damage">Shocking</a> /
+            <a class="take-lethal-damage">Lethal</a> /
+            <a class="take-brutal-damage">Brutal</a>
+        </h3>
+        <h3>
+            Heal Damage:
+            <a class="heal-shocking-damage">Shocking</a> /
+            <a class="heal-lethal-damage">Lethal</a> /
+            <a class="heal-brutal-damage">Brutal</a>
+        </h3>
+    </div>
+
     {{!-- Sheet Tab Navigation --}}
     <nav class="sheet-tabs tabs" data-group="primary">
         <a class="item" data-tab="description">Description</a>
@@ -75,6 +94,15 @@
                     <a class="attribute-roll">Roll</a>
                 </p>
                 <h2>Secondary Attributes</h2>
+                <p>
+                    Health:
+                    <input type="number" data-dtype="Number"
+                           name="data.health.value"
+                           value="{{data.health.value}}"
+                           placeholder="(Size + Endurance) / 2"
+                           />
+                    <a class="attribute-roll">Roll</a>
+                </p>
                 <p>
                     Composure:
                     <input type="number" data-dtype="Number"

@@ -47,6 +47,21 @@ export class SimpleActorSheet extends ActorSheet
             .on("click", "a.attribute-roll",
                 EntitySheetHelper.onAttributeRoll.bind(this));
 
+        // Damage links
+        html.find(".take-shocking-damage")
+            .on("click", this._take_damage.bind(this, 1));
+        html.find(".take-lethal-damage")
+            .on("click", this._take_damage.bind(this, 2));
+        html.find(".take-brutal-damage")
+            .on("click", this._take_damage.bind(this, 3));
+        // Heal damage
+        html.find(".heal-shocking-damage")
+            .on("click", this._heal_damage.bind(this, 1));
+        html.find(".heal-lethal-damage")
+            .on("click", this._heal_damage.bind(this, 2));
+        html.find(".heal-brutal-damage")
+            .on("click", this._heal_damage.bind(this, 3));
+
         // Handle saving of skill ranks
         html.find(".skill-rank")
             .on("input", this._submit_skill_rank.bind(this));
@@ -93,6 +108,71 @@ export class SimpleActorSheet extends ActorSheet
                 EntitySheetHelper.onClickAttributeGroupControl.bind(this));
     }
 
+    _heal_damage(type) {
+        let damage = this.actor.data.data.damage;
+        let i = 0;
+
+        if (damage == undefined) {
+            damage = [];
+            damage.length = this.actor.health;
+        }
+
+        if (damage.length < this.actor.health) {
+            damage.length = this.actor.health;
+        }
+
+        if (damage.length <= 0) {
+            return;
+        }
+
+        i = damage.length - 1;
+        while (damage[i] == 0) {
+            --i;
+        }
+
+        if (damage[i] == type) {
+            damage[i] = 0;
+        }
+
+        this.actor.update({'data.damage': damage});
+    }
+
+    _take_damage(type) {
+        let damage = this.actor.data.data.damage;
+        let i = 0;
+
+        if (damage == undefined) {
+            damage = [];
+            damage.length = this.actor.health;
+        }
+
+        if (damage.length < this.actor.health) {
+            damage.length = this.actor.health;
+        }
+
+        if (type == 1) {
+            let done = false;
+            /* shocking damage, find the first damage block thats free */
+            for (i = 0; i < damage.length; i++) {
+                if (damage[i] == 0 || damage[i] == undefined) {
+                    damage[i] = 1;
+                    done = true;
+                    break;
+                }
+            }
+        } else if (type > 1) {
+            let len = damage.length;
+            let i = 0;
+
+            for (i = 0; type <= damage[i] && i < len; i++)
+                ;
+            damage.splice(i, 0, type);
+            damage.length = len;
+        }
+
+        this.actor.update({'data.damage': damage});
+    }
+
     /* checks if any core attribute has changed, and updates
      * dependant values, such as skill
      */
@@ -121,6 +201,8 @@ export class SimpleActorSheet extends ActorSheet
 
         /* TODO: update composite attributes such as endurance
          */
+        this.actor.data.damage.length =
+            parseInt(this.actor.data.health.value);
     }
 
     _submit_skill_rank(event) {
