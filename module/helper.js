@@ -1,5 +1,34 @@
 import { ATTRIBUTE_TYPES } from "./constants.js";
 
+export class RollHelper
+{
+    static roll_dice_pool(sides, actor, flavour) {
+        let r = new Roll(sides + "d6", actor.getRollData());
+        let success = 0;
+        let f = "";
+        r.evaluate();
+        r.terms[0].results.forEach(function (i, idx) {
+            if (i.result >= 6) {
+                success += 2;
+            } else if (i.result >= 4) {
+                success += 1;
+            }
+        });
+
+        if (flavour == undefined) {
+            f = `<h2>Successes: ${success}</h2>`;
+        } else {
+            f = `<h2>${flavour}: ${success} Successes</h2>`;
+        }
+
+        r.toMessage({
+            user: game.user._id,
+            speaker: ChatMessage.getSpeaker({actor: actor}),
+            flavor: f
+        });
+    }
+}
+
 export class EntitySheetHelper
 {
     static getAttributeData(data) {

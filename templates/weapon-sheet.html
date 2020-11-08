@@ -23,35 +23,36 @@
             <div class="resource">
                 <p>
                     <label>AP:</label>
-                    <input type="number" value="{{data.ap}}"
-                           name="data.ap" />
+                    <input type="number" value="{{data.ap.value}}"
+                           name="data.ap.value" />
                 </p>
                 <p>
                     <label>Damage:</label>
-                    <input type="number" value="{{data.damage}}"
-                           name="data.damage" />
+                    <input type="number" value="{{data.damage.value}}"
+                           name="data.damage.value" />
                 </p>
                 <p>
                     <label>Attack Bonus:</label>
-                    <input type="number" value="{{data.attack_bonus}}"
-                           name="data.attack_bonus" />
+                    <input type="number" value="{{data.attack_bonus.value}}"
+                           name="data.attack_bonus.value" />
                 </p>
             </div>
             <div class="resource">
                 <p>
                     <label>Range:</label>
-                    <input type="text" value="{{data.range}}"
-                           name="data.range" />
+                    <input type="text" value="{{data.range.value}}"
+                           name="data.range.value" />
                 </p>
                 <p>
                     <label>Salvo:</label>
-                    <input type="number" value="{{data.salvo}}"
-                           name="data.salvo" />
+                    <input type="number" value="{{data.salvo.value}}"
+                           name="data.salvo.value" />
                 </p>
                 <p>
                     <label>Throwable:</label>
-                    <input type="checkbox" name="data.throwable"
-                           {{#if data.throwable}}
+                    <input type="checkbox"
+                           name="data.throwable.value"
+                           {{#if data.throwable.value}}
                            checked
                            {{/if}}
                            />
@@ -76,8 +77,8 @@
             <div class="resource">
                 <p>
                     <label>Skill:</label>
-                    <input type="text" name="data.skill"
-                           value="{{data.skill}}">
+                    <input type="text" name="data.skill.value"
+                           value="{{data.skill.value}}">
                 </p>
             </div>
         </div>

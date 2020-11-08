@@ -1,6 +1,7 @@
 import { AlphaWeapon } from "./items.js";
 import { AlphaItemSheet } from "./item-sheet.js";
 import { AlphaSkill } from "./alpha-system.js";
+import { RollHelper } from "./helper.js";
 
 export class AlphaWeaponSheet extends AlphaItemSheet
 {
@@ -37,13 +38,28 @@ export class AlphaWeaponSheet extends AlphaItemSheet
             return;
         }
 
-        let skill = this.object.data.data.skill;
-        if (skill == undefined || skill == "" ||
-            AlphaSkill.ALL_SKILLS[skill] == undefined) {
+        const skill_name = this.object.data.data.skill.value;
+        if (skill_name == undefined ||
+            skill_name == "" ||
+            AlphaSkill.ALL_SKILLS[skill_name] == undefined) {
             return;
         }
 
-        let owner = this.object.actor;
+        const owner = this.object.actor;
+        const owner_total = owner.data.data.skills[skill_name].total;
+        const item_total = this.object.data.data.attack_bonus.value;
+        const total =
+              parseInt(owner_total) +
+              parseInt(item_total);
+
+        if (total == 0) {
+            return;
+        }
+
+        RollHelper.roll_dice_pool(
+            total, this.object.actor,
+            `Attack with ${this.object.name}`
+        );
     }
 
     /** @override */
