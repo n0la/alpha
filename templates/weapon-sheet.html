@@ -3,12 +3,16 @@
     {{> "systems/alpha/templates/parts/sheet-item-header.html" }}
 
     <div class="extra-resource">
-        <h3><a class="attack-roll">Attack Roll</a></h3>
+        <h3>
+            <a class="attack-roll">Attack Roll</a> /
+            <a class="aimed-attack-roll">Aimed Attack Roll</a>
+        </h3>
     </div>
 
     {{!-- Sheet Tab Navigation --}}
     <nav class="sheet-tabs tabs" data-group="primary">
         <a class="item" data-tab="description">Description</a>
+        <a class="item" data-tab="common">Common</a>
         <a class="item" data-tab="attributes">Attributes</a>
         <a class="item" data-tab="advanced">Advanced</a>
     </nav>
@@ -17,6 +21,8 @@
     <section class="sheet-body">
 
         {{> "systems/alpha/templates/parts/sheet-item-description.html" }}
+
+        {{> "systems/alpha/templates/parts/sheet-item-common.html" }}
 
         {{!-- Attributes Tab --}}
         <div class="tab attributes" data-group="primary" data-tab="attributes">
@@ -57,7 +63,6 @@
                            {{/if}}
                            />
                 </p>
-
                 <p>
                     <label>Ammo:</label>
                     <input type="number"

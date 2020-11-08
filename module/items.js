@@ -4,11 +4,28 @@ export class AlphaItem extends Item
     _initialize() {
         super._initialize();
         this.data.resources = {value: 0};
-        this.data.traits = {value: []};
         this.data.value = {value: 0};
         this.data.weight = {value: 0};
         this.data.quantity = {value: 0};
         this.data.description = {value: ""};
+
+        this.data.areaeffect = {value: false};
+        this.data.bulky = {value: 0};
+        this.data.cumbersome = {value: false};
+        this.data.heavy = {value: 0};
+        this.data.parry = {value: false};
+        this.data.rapidfire = {value: 0};
+        this.data.reliable = {value: false};
+        this.data.small = {value: false};
+        this.data.sniper = {value: false};
+    }
+
+    get is_reliable() {
+        return this.data.data.reliable.value;
+    }
+
+    get is_sniper() {
+        return this.data.data.sniper.value;
     }
 }
 
