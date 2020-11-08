@@ -161,11 +161,13 @@ export class SimpleActorSheet extends ActorSheet
         if (attribute == undefined) {
             return;
         }
-        let value = attribute.value;
+        const value = attribute.value;
         if (value == undefined || value == "" || value == 0) {
             return;
         }
-        RollHelper.roll_dice_pool(value, this.actor, attribute_name);
+        const nm = attribute_name.charAt(0).toUpperCase() +
+              attribute_name.slice(1);
+        RollHelper.roll_dice_pool(value, this.actor, nm);
     }
 
     /**
