@@ -2,7 +2,7 @@ import { ATTRIBUTE_TYPES } from "./constants.js";
 
 export class RollHelper
 {
-    static roll_dice_pool(sides, actor, flavour) {
+    static roll_dice_pool(sides, actor, flavour = null, extra = "") {
         let r = new Roll(sides + "d6", actor.getRollData());
         let success = 0;
         let f = "";
@@ -20,7 +20,7 @@ export class RollHelper
             str = "Success";
         }
 
-        if (flavour == undefined) {
+        if (flavour == null || flavour == undefined) {
             f = `<h2>${str}: ${success}</h2>`;
         } else {
             f = `<h2>${flavour}: ${success} ${str}</h2>`;
@@ -29,7 +29,7 @@ export class RollHelper
         r.toMessage({
             user: game.user._id,
             speaker: ChatMessage.getSpeaker({actor: actor}),
-            flavor: f
+            flavor: f + extra
         });
     }
 }

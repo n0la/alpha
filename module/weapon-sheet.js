@@ -33,6 +33,11 @@ export class AlphaWeaponSheet extends AlphaItemSheet
             .on("click", this._on_attack_roll.bind(this));
     }
 
+    _get_extra_info() {
+        return `<h3>AP: ${this.object.data.data.ap.value}</h3>` +
+            `<h3>DMG: ${this.object.data.data.damage.value}</h3>`
+    }
+
     _on_attack_roll(event) {
         if (!this.object.isOwned) {
             return;
@@ -58,7 +63,8 @@ export class AlphaWeaponSheet extends AlphaItemSheet
 
         RollHelper.roll_dice_pool(
             total, this.object.actor,
-            `Attack with ${this.object.name}`
+            `Attack with ${this.object.name}`,
+            this._get_extra_info()
         );
     }
 
