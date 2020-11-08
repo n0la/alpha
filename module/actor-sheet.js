@@ -1,4 +1,5 @@
 import { EntitySheetHelper } from "./helper.js";
+import { RollHelper } from "./helper.js";
 import {
     AlphaSkill,
     alpha_core_attributes
@@ -137,33 +138,6 @@ export class SimpleActorSheet extends ActorSheet
         this.actor.update({'data.skills': skills});
     }
 
-    _roll_dicepool(sides, flavour) {
-        let r = new Roll(sides + "d6", this.actor.getRollData());
-        let success = 0;
-        let f = "";
-        r.evaluate();
-        r.terms[0].results.forEach(function (i, idx) {
-            if (i.result >= 6) {
-                success += 2;
-            } else if (i.result >= 4) {
-                success += 1;
-            }
-        });
-
-        if (flavour == undefined) {
-            f = `<h2>Successes: ${success}</h2>`;
-        } else {
-            f = `<h2>${flavour}: ${success} Successes</h2>`;
-        }
-
-        r.toMessage({
-            user: game.user._id,
-            speaker: ChatMessage.getSpeaker({actor: this.actor}),
-            flavor: f
-        });
-
-    }
-
     _on_skill_roll(event)
     {
         let button = $(event.currentTarget);
@@ -176,7 +150,7 @@ export class SimpleActorSheet extends ActorSheet
         if (value == undefined || value == "" || value == 0) {
             return;
         }
-        this._roll_dicepool(value, skill_name);
+        RollHelper.roll_dice_pool(value, this.actor, skill_name);
     }
 
     _on_attribute_roll(event)
@@ -191,7 +165,7 @@ export class SimpleActorSheet extends ActorSheet
         if (value == undefined || value == "" || value == 0) {
             return;
         }
-        this._roll_dicepool(value, attribute_name);
+        RollHelper.roll_dice_pool(value, this.actor, attribute_name);
     }
 
     /**
