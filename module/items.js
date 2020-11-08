@@ -27,6 +27,10 @@ export class AlphaItem extends Item
     get is_sniper() {
         return this.data.data.sniper.value;
     }
+
+    get is_areaeffect() {
+        return this.data.data.areaeffect.value;
+    }
 }
 
 export class AlphaWeapon extends AlphaItem
