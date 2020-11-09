@@ -4,26 +4,28 @@ export class RollHelper
 {
     static roll_dice_pool(sides, actor, flavour = null, extra = "") {
         let r = new Roll(sides + "d6", actor.getRollData());
-        let success = 0;
+        let hits = 0;
+        let strongHits = 0
         let f = "";
-        let str = "Successes";
+        let str = "Hits";
         r.evaluate();
         r.terms[0].results.forEach(function (i, idx) {
             if (i.result >= 6) {
-                success += 2;
+                hits += 2;
+                strongHits += 1;
             } else if (i.result >= 4) {
-                success += 1;
+                hits += 1;
             }
         });
 
-        if (success == 1) {
-            str = "Success";
+        if (hits == 1) {
+            str = "Hit";
         }
 
         if (flavour == null || flavour == undefined) {
-            f = `<h2>${str}: ${success}</h2>`;
+            f = `<h2>${str}: ${hits} (${strongHits})</h2>`;
         } else {
-            f = `<h2>${flavour}: ${success} ${str}</h2>`;
+            f = `<h2>${flavour}: ${hits} (${strongHits}) ${str}</h2>`;
         }
 
         r.toMessage({
