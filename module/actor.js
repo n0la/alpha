@@ -22,6 +22,19 @@ export class SimpleActor extends Actor
         this.data.data.attributes = this.data.data.attributes || {};
     }
 
+    update_health() {
+        if (this.damage == null) {
+            this.damage = [];
+        }
+        if (this.damage.length != this.health) {
+            this.damage.length = this.health;
+            let damage = [...this.damage].map(
+                v => v == null ? 0 : v
+            );
+            this.damage = damage;
+        }
+    }
+
     /** @override */
     _initialize() {
         super._initialize();
@@ -47,10 +60,20 @@ export class SimpleActor extends Actor
         this.data.wealth = {value: 0};
         this.data.resources = {value: 0};
         this.data.tradegoods = {value: 0};
+
+        this.update_health();
     }
 
     get health() {
         return this.data.data.health.value;
+    }
+
+    get damage() {
+        return this.data.data.damage;
+    }
+
+    set damage(value) {
+        this.data.data.damage = value;
     }
 
     /* -------------------------------------------- */

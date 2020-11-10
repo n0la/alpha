@@ -109,28 +109,21 @@ export class SimpleActorSheet extends ActorSheet
     }
 
     _heal_damage(type) {
-        let damage = this.actor.data.data.damage;
+        this.actor.update_health();
+
+        let damage = this.actor.damage;
         let i = 0;
-
-        if (damage == undefined) {
-            damage = [];
-            damage.length = this.actor.health;
-        }
-
-        if (damage.length < this.actor.health) {
-            damage.length = this.actor.health;
-        }
 
         if (damage.length <= 0) {
             return;
         }
 
         i = damage.length - 1;
-        while (damage[i] == 0) {
+        while (damage[i] == 0 && i >= 0) {
             --i;
         }
 
-        if (damage[i] == type) {
+        if (damage[i] <= type) {
             damage[i] = 0;
         }
 
@@ -138,18 +131,10 @@ export class SimpleActorSheet extends ActorSheet
     }
 
     _take_damage(type) {
-        let damage = this.actor.data.data.damage;
+        this.actor.update_health();
+
+        let damage = this.actor.damage;
         let i = 0;
-
-        if (damage == undefined) {
-            damage = [];
-            damage.length = this.actor.health;
-        }
-
-        if (damage.length < this.actor.health) {
-            damage.length = this.actor.health;
-        }
-
         let len = damage.length;
 
         for (i = 0; type <= damage[i] && i < len; i++)
