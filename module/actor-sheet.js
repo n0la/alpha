@@ -43,9 +43,6 @@ export class SimpleActorSheet extends ActorSheet
         // Handle rollable items and attributes
         html.find(".items .rollable")
             .on("click", this._onItemRoll.bind(this));
-        html.find(".attributes")
-            .on("click", "a.attribute-roll",
-                EntitySheetHelper.onAttributeRoll.bind(this));
 
         // Damage links
         html.find(".take-shocking-damage")
