@@ -3,21 +3,31 @@ export class AlphaItem extends Item
     /** @override */
     _initialize() {
         super._initialize();
-        this.data.resources = {value: 0};
-        this.data.value = {value: 0};
-        this.data.weight = {value: 0};
-        this.data.quantity = {value: 0};
-        this.data.description = {value: ""};
 
-        this.data.areaeffect = {value: false};
-        this.data.bulky = {value: 0};
-        this.data.cumbersome = {value: false};
-        this.data.heavy = {value: 0};
-        this.data.parry = {value: false};
-        this.data.rapidfire = {value: 0};
-        this.data.reliable = {value: false};
-        this.data.small = {value: false};
-        this.data.sniper = {value: false};
+        const initial_values = {
+            resources: {value: 0},
+            value: {value: 0},
+            weight: {value: 0},
+            quantity: {value: 0},
+            description: {value: ""},
+
+            areaeffect: {value: false},
+            bulky: {value: 0},
+            cumbersome: {value: false},
+            heavy: {value: 0},
+            parry: {value: false},
+            rapidfire: {value: 0},
+            reliable: {value: false},
+            small: {value: false},
+            sniper: {value: false}
+        };
+
+        let neu = Object.assign(
+            {},
+            initial_values,
+            (this.data.data || {})
+        );
+        this.data.data = neu;
     }
 
     get is_reliable() {
@@ -38,15 +48,25 @@ export class AlphaWeapon extends AlphaItem
     /** @override */
     _initialize() {
         super._initialize();
-        this.data.skill = {value: "rangedcombat"};
-        this.data.ap = {value: 0};
-        this.data.damage = {value: 0};
-        this.data.ammo = {value: 0, max: 0}
-        this.data.magazines = {value: 0, max: 0};
-        this.data.range = {value: "close"};
-        this.data.salvo = {value: 0};
-        this.data.attack_bonus = {value: 0};
-        this.data.throwable = {value: false};
+
+        const initial_values = {
+            skill: {value: "rangedcombat"},
+            ap: {value: 0},
+            damage: {value: 0},
+            ammo: {value: 0, max: 0},
+            magazines: {value: 0, max: 0},
+            range: {value: "close"},
+            salvo: {value: 0},
+            attack_bonus: {value: 0},
+            throwable: {value: false}
+        };
+
+        let neu = Object.assign(
+            {},
+            initial_values,
+            (this.data.data || {})
+        );
+        this.data.data = neu;
     }
 
     get is_ranged() {
@@ -67,8 +87,18 @@ export class AlphaArmour extends AlphaItem
     /** @override */
     _initialize() {
         super._initialize();
-        this.data.rating = {value: 0};
-        this.data.hazard = {value: 0};
-        this.data.sealed = {value: false};
+
+        const initial_values = {
+            rating: {value: 0},
+            hazard: {value: 0},
+            sealed: {value: false}
+        };
+
+        let neu = Object.assign(
+            {},
+            initial_values,
+            (this.data.data || {})
+        );
+        this.data.data = neu;
     }
 }
