@@ -6,7 +6,7 @@ import { alpha_skills, AlphaSkill } from "./alpha-system.js";
  * which is ideal for the Simple system.
  * @extends {Actor}
  */
-export class SimpleActor extends Actor
+export class AlphaActor extends Actor
 {
     /** @override */
     prepareData() {

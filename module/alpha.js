@@ -6,8 +6,8 @@
  */
 
 // Import Modules
-import { SimpleActor } from "./actor.js";
-import { SimpleActorSheet } from "./actor-sheet.js";
+import { AlphaActor } from "./actor.js";
+import { AlphaActorSheet } from "./actor-sheet.js";
 import { AlphaItemSheet } from "./item-sheet.js";
 import { AlphaWeaponSheet } from "./weapon-sheet.js";
 import { AlphaArmourSheet } from "./armour-sheet.js";
@@ -38,18 +38,18 @@ Hooks.once("init", async function() {
     };
 
     game.alpha = {
-        SimpleActor,
+        AlphaActor,
         createAlphaMacro
     };
 
     // Define custom Entity classes
-    CONFIG.Actor.entityClass = SimpleActor;
+    CONFIG.Actor.entityClass = AlphaActor;
     CONFIG.Item.entityClass = AlphaItem;
 
     // Register sheet application classes
     Actors.unregisterSheet("core", ActorSheet);
-    Actors.registerSheet("alpha", SimpleActorSheet,
-                         { makeDefault: true });
+    Actors.registerSheet("alpha", AlphaActorSheet, { makeDefault: true });
+
     Items.unregisterSheet("core", ItemSheet);
     Items.registerSheet("alpha", AlphaItemSheet, { makeDefault: true });
     Items.registerSheet("alpha", AlphaWeaponSheet);
