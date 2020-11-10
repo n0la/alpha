@@ -35,6 +35,9 @@ export class AlphaActor extends Actor
         const initial_values = {
             description: {value: ""},
 
+            xp: {value: 0},
+            level: {value: 1},
+
             physique: {value: 1},
             motorics: {value: 1},
             intellect: {value: 1},
@@ -50,7 +53,7 @@ export class AlphaActor extends Actor
 
             resilience: {value: 0},
             willpower: {value: 0},
-            health: {value: 0},
+            health: {value: 5},
             damage: [],
 
             wealth: {value: 0},
