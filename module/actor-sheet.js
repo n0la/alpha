@@ -106,7 +106,7 @@ export class AlphaActorSheet extends ActorSheet
     }
 
     _heal_damage(type) {
-        this.actor.update_health();
+        this.actor.update_damage();
 
         let damage = this.actor.damage;
         let i = 0;
@@ -128,7 +128,7 @@ export class AlphaActorSheet extends ActorSheet
     }
 
     _take_damage(type) {
-        this.actor.update_health();
+        this.actor.update_damage();
 
         let damage = this.actor.damage;
         let i = 0;
@@ -142,7 +142,7 @@ export class AlphaActorSheet extends ActorSheet
         this.actor.update({'data.damage': damage});
     }
 
-    _update_health(formData) {
+    _update_damage(formData) {
         const neu = formData["data.health.value"];
 
         if (neu == null) {
@@ -150,7 +150,8 @@ export class AlphaActorSheet extends ActorSheet
         }
 
         if (neu != this.object.health) {
-            this.object.update_health();
+            this.object.health = neu;
+            this.object.update_damage();
             formData['data.damage'] = this.object.damage;
         }
 
@@ -297,6 +298,9 @@ export class AlphaActorSheet extends ActorSheet
         /* update skill totals
          */
         formData = this._update_skills(formData);
+        /* update health
+         */
+        formData = this._update_damage(formData);
 
         return this.object.update(formData);
     }

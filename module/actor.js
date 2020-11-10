@@ -15,7 +15,7 @@ export class AlphaActor extends Actor
         this.data.data.attributes = this.data.data.attributes || {};
     }
 
-    update_health() {
+    update_damage() {
         if (this.damage == null) {
             this.damage = [];
         }
@@ -73,10 +73,11 @@ export class AlphaActor extends Actor
             this.skills = {};
             alpha_skills.forEach((s) => {
                 this.skills[s.id] = new AlphaSkill(s);
+                this.skills[s.id].attribute_modifier = 1;
             });
         }
 
-        this.update_health();
+        this.update_damage();
     }
 
     get skills() {
@@ -89,6 +90,10 @@ export class AlphaActor extends Actor
 
     get health() {
         return this.data.data.health.value;
+    }
+
+    set health(value) {
+        this.data.data.health.value = parseInt(value);
     }
 
     get damage() {
