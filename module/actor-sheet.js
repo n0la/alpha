@@ -173,8 +173,7 @@ export class SimpleActorSheet extends ActorSheet
 
         /* TODO: update composite attributes such as endurance
          */
-        this.actor.data.damage.length =
-            parseInt(this.actor.data.health.value);
+        this.actor.update_health();
     }
 
     _submit_skill_rank(event) {
