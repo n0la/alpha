@@ -33,6 +33,8 @@ export class AlphaActor extends Actor
         super._initialize();
 
         const initial_values = {
+            description: {value: ""},
+
             physique: {value: 1},
             motorics: {value: 1},
             intellect: {value: 1},

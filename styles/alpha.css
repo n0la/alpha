@@ -126,6 +126,11 @@
   flex: none;
   width: auto;
 }
+.alpha .operator {
+  margin-left: 5px;
+  margin-right: 5px;
+  flex: 0;
+}
 .alpha .skill-list {
   list-style: none;
   margin: 7px 0;

@@ -50,6 +50,8 @@
 
     {{!-- Sheet Body --}}
     <section class="sheet-body">
+        {{> "systems/alpha/templates/parts/sheet-item-description.html" }}
+
         <div class="tab attributes" data-group="primary" data-tab="attributes">
             <div class="resource">
                 <h2>Core Attributes:</h2>
@@ -210,19 +212,40 @@
                 {{#each data.skills as |skill|}}
                 <li class="skill flexrow" data-item-id="{{skill.id}}">
                     <h3 class="skill-name">{{skill.name}}:</h3>
+                    <input type="hidden" value="{{skill.name}}"
+                           name="data.skills.{{skill.id}}.name"
+                           />
+                    <input type="hidden" value="{{skill.id}}"
+                           name="data.skills.{{skill.id}}.id"
+                           />
+                    <input type="hidden" value="{{skill.attribute}}"
+                           name="data.skills.{{skill.id}}.attribute"
+                           />
                     <input type="number" class="skill-rank"
                            id="{{skill.id}}-rank"
                            value="{{skill.rank}}"
+                           name="data.skills.{{skill.id}}.rank"
                            placeholder="Rank"
                            />
-                    +
+                    <div class="operator">+</div>
                     <input type="number"
                            value="{{skill.attribute_modifier}}"
-                           placeholder="Attribute Modifier"/>
-                    =
+                           placeholder="Attribute Modifier"
+                           disabled="disabled"
+                           />
+                    <div class="operator">+</div>
+                    <input type="number" class="skill-modifier"
+                           id="{{skill.id}}-modifier"
+                           value="{{skill.modifier}}"
+                           name="data.skills.{{skill.id}}.modifier"
+                           placeholder="Misc. Modifier"
+                           />
+                    <div class="operator">=</div>
                     <input type="number" class="total"
                            value="{{skill.total}}"
-                           placeholder="Total">
+                           placeholder="Total"
+                           disabled="disabled"
+                           />
                     &nbsp;
                     <a class="skill-roll" id="{{skill.name}}-roll">Roll</a>
                 </li>
@@ -232,7 +255,8 @@
 
         {{!-- Biography Tab --}}
         <div class="tab biography" data-group="primary" data-tab="description">
-            {{editor content=data.biography target="data.biography" button=true owner=owner editable=editable}}
+            {{editor content=data.biography target="data.biography"
+            button=true owner=owner editable=editable}}
         </div>
 
         {{!-- Owned Items Tab --}}

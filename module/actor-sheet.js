@@ -20,7 +20,7 @@ export class AlphaActorSheet extends ActorSheet
             tabs: [{navSelector: ".sheet-tabs",
                     contentSelector: ".sheet-body",
                     initial: "description"}],
-            scrollY: [".biography", ".items", ".attributes"],
+            scrollY: [".biography", ".items", ".attributes", ".skills"],
             dragDrop: [{dragSelector: ".item-list .item", dropSelector: null}]
         });
     }
@@ -60,8 +60,8 @@ export class AlphaActorSheet extends ActorSheet
             .on("click", this._heal_damage.bind(this, 3));
 
         // Handle saving of skill ranks
-        html.find(".skill-rank")
-            .on("input", this._submit_skill_rank.bind(this));
+        //html.find(".skill-rank")
+        //    .on("input", this._submit_skill_rank.bind(this));
 
         // Handle rolling attributes
         html.find(".attribute-roll")
@@ -142,35 +142,84 @@ export class AlphaActorSheet extends ActorSheet
         this.actor.update({'data.damage': damage});
     }
 
+    _update_health(formData) {
+        const neu = formData["data.health.value"];
+
+        if (neu == null) {
+            return formData;
+        }
+
+        if (neu != this.object.health) {
+            this.object.update_health();
+            formData['data.damage'] = this.object.damage;
+        }
+
+        return formData;
+    }
+
     /* checks if any core attribute has changed, and updates
      * dependant values, such as skill
      */
     _update_core_attributes(formData) {
         alpha_core_attributes.forEach((attr) => {
             let key = `data.${attr}.value`;
-            if (formData[key] != undefined &&
-                formData[key] != this.actor.data[key]) {
-                this._update_core_attribute(attr, formData[key]);
+            if (formData[key] == undefined ||
+                formData[key] == this.actor.data[key]) {
+                return;
             }
+
+            /* core attribute has changed, update affected skills
+             */
+            formData = this._update_core_attribute(
+                formData, attr, formData[key]
+            );
         });
+
+        return formData;
     }
 
-    _update_core_attribute(attribute_name, new_rank) {
+    _update_core_attribute(formData, attribute_name, new_rank) {
         let skills = this.actor.data.data.skills;
         for (var skill_name in skills) {
             let skill = skills[skill_name];
-            if (skill.attribute != undefined &&
-                skill.attribute == attribute_name) {
-                /* update modifier, and total */
-                skill.attribute_modifier = new_rank;
-                AlphaSkill.update_total(skill);
+            if (skill.attribute == undefined ||
+                skill.attribute != attribute_name) {
+                continue;
+            }
+
+            const total = skill.total;
+            /* update modifier, and total */
+            skill.attribute_modifier = new_rank;
+            AlphaSkill.update_total(skill);
+            if (total != skill.total) {
+                formData[`data.skills.${skill.id}.attribute_modifier`] =
+                    new_rank;
+                formData[`data.skills.${skill.id}.total`] = skill.total;
             }
         }
-        this.actor.update({'data.skills': skills});
 
-        /* TODO: update composite attributes such as endurance
-         */
-        this.actor.update_health();
+        return formData;
+    }
+
+    _update_skills(formdata) {
+        for (var skill in this.object.skills) {
+            let s = this.object.skills[skill];
+            let rank = `data.skills.${s.id}.rank`;
+            let modifier = `data.skills.${s.id}.modifier`;
+            if (formdata[rank] != null || formdata[modifier] != null) {
+                const total = parseInt(s.total);
+
+                s.rank = parseInt(formdata[rank]);
+                s.modifier = parseInt(formdata[modifier]);
+                AlphaSkill.update_total(s);
+
+                if (s.total != total) {
+                    formdata[`data.skills.${s.id}.total`] = s.total;
+                }
+            }
+        }
+
+        return formdata;
     }
 
     _submit_skill_rank(event) {
@@ -241,10 +290,14 @@ export class AlphaActorSheet extends ActorSheet
     _updateObject(event, formData) {
         formData = EntitySheetHelper.updateAttributes(formData, this);
         formData = EntitySheetHelper.updateGroups(formData, this);
-        let ret = this.object.update(formData);
-        /* check if we need to update any dependant values
+
+        /* update skills if attributes change
          */
-        this._update_core_attributes(formData);
-        return ret;
+        formData = this._update_core_attributes(formData);
+        /* update skill totals
+         */
+        formData = this._update_skills(formData);
+
+        return this.object.update(formData);
     }
 }
