@@ -11,13 +11,6 @@ export class SimpleActor extends Actor
     /** @override */
     prepareData() {
         super.prepareData();
-        if (this.skills == undefined) {
-            this.skills = {};
-            alpha_skills.forEach((s) => {
-                this.skills[s.id] = new AlphaSkill(s);
-            });
-        }
-        this.data.data.skills = this.data.data.skills || this.skills;
         this.data.data.groups = this.data.data.groups || {};
         this.data.data.attributes = this.data.data.attributes || {};
     }
@@ -39,29 +32,54 @@ export class SimpleActor extends Actor
     _initialize() {
         super._initialize();
 
-        this.data.physique = {value: 1};
-        this.data.motorics = {value: 1};
-        this.data.intellect = {value: 1};
-        this.data.psyche = {value: 1};
+        const initial_values = {
+            physique: {value: 1},
+            motorics: {value: 1},
+            intellect: {value: 1},
+            psyche: {value: 1},
 
-        this.data.composure = {value: 0};
-        this.data.endurance = {value: 0};
-        this.data.focus = {value: 0};
-        this.data.vigilance = {value: 0};
+            composure: {value: 0},
+            endurance: {value: 0},
+            focus: {value: 0},
+            vigilance: {value: 0},
 
-        this.data.pace = {value: 6};
-        this.data.size = {value: 5};
+            pace: {value: 6},
+            size: {value: 5},
 
-        this.data.resilience = {value: 0};
-        this.data.willpower = {value: 0};
-        this.data.health = {value: 0};
-        this.data.damage = [];
+            resilience: {value: 0},
+            willpower: {value: 0},
+            health: {value: 0},
+            damage: [],
 
-        this.data.wealth = {value: 0};
-        this.data.resources = {value: 0};
-        this.data.tradegoods = {value: 0};
+            wealth: {value: 0},
+            resources: {value: 0},
+            tradegoods: {value: 0}
+        };
+
+        let neu = Object.assign(
+            {},
+            initial_values,
+            (this.data.data || {})
+        );
+
+        this.data.data = neu;
+
+        if (this.skills == null) {
+            this.skills = {};
+            alpha_skills.forEach((s) => {
+                this.skills[s.id] = new AlphaSkill(s);
+            });
+        }
 
         this.update_health();
+    }
+
+    get skills() {
+        return this.data.data.skills;
+    }
+
+    set skills(value) {
+        this.data.data.skills = value;
     }
 
     get health() {
