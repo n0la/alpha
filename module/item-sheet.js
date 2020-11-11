@@ -42,6 +42,11 @@ export class AlphaItemSheet extends ItemSheet
         if (!(this.object instanceof objectType)) {
             let new_object = new objectType;
             new_object._initialize();
+            new_object.data = Object.assign(
+                {},
+                new_object.data,
+                this.object.data
+            );
             new_object.data.data = Object.assign(
                 {},
                 new_object.data.data,
