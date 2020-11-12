@@ -11,7 +11,7 @@ export const alpha_skills = [
     { "name": "Gunnery", "id": "gunnery", "attribute": "intellect" },
     { "name": "Manipulation", "id": "manipulation", "attribute": "psyche" },
     { "name": "Mechanics", "id": "mechanics", "attribute": "motorics" },
-    { "name": "Melee Comabt", "id": "meleecombat", "attribute": "physique" },
+    { "name": "Melee Combat", "id": "meleecombat", "attribute": "physique" },
     { "name": "Observation", "id": "observation", "attribute": "intellect" },
     { "name": "Pilot", "id": "pilot", "attribute": "motorics" },
     { "name": "Ranged Combat", "id": "rangedcombat", "attribute": "motorics" },
