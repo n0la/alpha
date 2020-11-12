@@ -11,8 +11,7 @@
   }
 
   .sheet-header {
-    flex: 0 0 100px;
-    overflow: hidden;
+    flex: 0;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -27,7 +26,7 @@
 
     .header-fields {
       flex: 1;
-      height: 100px;
+      // height: 100px;
     }
 
     h1.charname {
@@ -68,6 +67,7 @@
     overflow: hidden;
     .tab {
       max-height: 100%;
+      height: 100%;
       overflow-y: auto;
     }
   }
@@ -283,7 +283,6 @@
   min-height: 400px;
 }
 
-
 .alpha {
   .character-value {
     display: flex;
@@ -341,13 +340,15 @@
   }
 }
 
-.tab.attributes {
-  grid-template-columns: repeat(2, 1fr);
-}
-
-div.tab[data-tab].active {
+.tab[data-tab].active.sheet--attributes {
   display: grid;
   gap: 10px;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: min-content;
 }
 
-@import (less) "./skills.less";
+
+.alpha {
+  @import (less) "./skills.less";
+  @import (less) "./items.less";
+}

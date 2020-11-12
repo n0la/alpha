@@ -1,0 +1,23 @@
+.item-sheet {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 200px 1fr;
+
+  .item-traits {
+    text-align: left;
+    border: 2px solid black;
+  }
+
+  .item-trait {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 40px 1fr;
+    align-items: center;
+    font-size: 14pt;
+    margin: 5px;
+
+    &--active {
+      text-align: center;
+    }
+  }
+}
