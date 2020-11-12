@@ -12,7 +12,7 @@
   height: 100%;
 }
 .alpha .sheet-header {
-  flex: 0 0 130px;
+  flex: 0 0 100px;
   overflow: hidden;
   display: flex;
   flex-direction: row;
@@ -41,29 +41,7 @@
   margin: 0;
 }
 .alpha .resource {
-  width: 50%;
-  height: 40px;
-  margin-top: 10px;
-  float: left;
   text-align: center;
-}
-.alpha .small-resource {
-  width: 25%;
-  height: 40px;
-  margin-top: 10px;
-  float: left;
-  text-align: center;
-}
-.alpha .extra-resource {
-  margin-top: 5px;
-  margin-bottom: 5px;
-  float: left;
-  text-align: center;
-  flex: 0;
-}
-.alpha .resource input {
-  width: 100px;
-  height: 28px;
 }
 .alpha .tabs {
   flex: 0 0 40px;
@@ -82,7 +60,7 @@
   overflow: hidden;
 }
 .alpha .sheet-body .tab {
-  height: 100%;
+  max-height: 100%;
   overflow-y: auto;
 }
 .alpha .editor,
@@ -121,48 +99,6 @@
   justify-content: flex-start;
 }
 .alpha .item-list .item-button {
-  line-height: 1;
-  font-size: 11px;
-  flex: none;
-  width: auto;
-}
-.alpha .operator {
-  margin-left: 5px;
-  margin-right: 5px;
-  flex: 0;
-}
-.alpha .skill-list {
-  list-style: none;
-  margin: 7px 0;
-  padding: 0;
-  overflow-y: auto;
-}
-.alpha .skill-list .skill {
-  min-height: 30px;
-  line-height: 24px;
-  padding: 3px 0;
-  border-bottom: 1px solid #BBB;
-  align-items: stretch;
-}
-.alpha .skill-list .skill img {
-  flex: 0 0 24px;
-  margin-right: 5px;
-}
-.alpha .skill-list .skill-name {
-  margin: 0;
-}
-.alpha .skill-list .skill-controls {
-  flex: 0 0 36px;
-}
-.alpha .skill-list .skill-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  align-items: center;
-  flex: 2;
-  justify-content: flex-start;
-}
-.alpha .skill-list .skill-button {
   line-height: 1;
   font-size: 11px;
   flex: none;
@@ -298,4 +234,108 @@
 .alpha.sheet.item {
   min-width: 460px;
   min-height: 400px;
+}
+.alpha .character-value {
+  display: flex;
+  margin-bottom: 10px;
+}
+.alpha .character-value > * {
+  height: 40px;
+  box-sizing: border-box;
+}
+.alpha .character-value input {
+  border: 2px solid black;
+  border-radius: 0;
+  flex: 1 0 60px;
+  font-size: 16pt;
+  margin-right: 10px;
+}
+.alpha .character-value--label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  background: black;
+  color: white;
+  flex: 1 0 100px;
+  margin-right: 10px;
+}
+.alpha .character-value--label > * {
+  width: 100%;
+}
+.alpha .roll-button {
+  flex: 0 0 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16pt;
+}
+.alpha .label--title,
+.alpha .label--subtitle {
+  text-align: center;
+  text-transform: uppercase;
+}
+.alpha .label--title {
+  font-size: 14pt;
+}
+.alpha .label--subtitle {
+  font-size: 8pt;
+}
+.alpha .extra-resource {
+  flex: 0 0;
+}
+.tab.attributes {
+  grid-template-columns: repeat(2, 1fr);
+}
+div.tab[data-tab].active {
+  display: grid;
+  gap: 10px;
+}
+.skill-list .skill {
+  display: grid;
+  grid-template-columns: 4fr 2fr 30px 2fr 30px 2fr 30px 2fr 1fr;
+  padding-bottom: 2px;
+  padding-top: 2px;
+  position: relative;
+}
+.skill-list .skill > * {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.skill-list .skill:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.skill-list .skill.skill--header {
+  position: sticky;
+  top: 0;
+  background: black;
+  color: white;
+  z-index: 1;
+}
+.skill-list .skill.skill--header > * {
+  height: 30px;
+}
+.skill-list input {
+  border: 1px dashed black;
+  background: transparent;
+  border-radius: 0;
+  flex: 1 0 0;
+  font-size: 16pt;
+  text-align: center;
+}
+.skill-list input[disabled] {
+  border: 0 solid transparent;
+  outline: 0;
+}
+.skill-list .skill-name {
+  display: flex;
+  align-items: center;
+  font-size: 14pt;
+  justify-content: start;
+  flex-wrap: wrap;
+  color: black;
+  flex: 1 0 100px;
 }

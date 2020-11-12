@@ -43,15 +43,7 @@
   }
 
   .resource {
-    width: 50%;
-    height: 40px;
-    margin-top: 10px;
-    float: left;
     text-align: center;
-    input {
-      width: 100px;
-      height: 28px;
-    }
   }
 
   /* Sheet Tabs */
@@ -74,7 +66,7 @@
   .sheet-body {
     overflow: hidden;
     .tab {
-      height: 100%;
+      max-height: 100%;
       overflow-y: auto;
     }
   }
@@ -289,3 +281,72 @@
   min-width: 460px;
   min-height: 400px;
 }
+
+
+.alpha {
+  .character-value {
+    display: flex;
+    margin-bottom: 10px;
+  }
+  .character-value > * {
+    height: 40px;
+    box-sizing: border-box;
+  }
+  .character-value input {
+    border: 2px solid black;
+    border-radius: 0;
+    flex: 1 0 60px;
+    font-size: 16pt;
+    margin-right: 10px;
+  }
+  .character-value--label {
+    > * {
+      width: 100%;
+    }
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    background: black;
+    color: white;
+    flex: 1 0 100px;
+    margin-right: 10px;
+  }
+  .roll-button {
+    flex: 0 0 40px;
+    height: 40px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 16pt;
+  }
+  .label--title,
+  .label--subtitle {
+    text-align: center;
+    text-transform: uppercase;
+  }
+  .label--title {
+    font-size: 14pt;
+  }
+  .label--subtitle {
+    font-size: 8pt;
+  }
+
+  .extra-resource {
+    flex: 0 0;
+  }
+}
+
+.tab.attributes {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+div.tab[data-tab].active {
+  display: grid;
+  gap: 10px;
+}
+
+@import (less) "./skills.less";

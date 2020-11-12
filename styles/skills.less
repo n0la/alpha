@@ -1,0 +1,56 @@
+.skill-list {
+  .skill {
+    display: grid;
+    grid-template-columns: 4fr 2fr 30px 2fr 30px 2fr 30px 2fr 1fr;
+    padding-bottom: 2px;
+    padding-top: 2px;
+    position: relative;
+
+    > * {
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &:nth-child(even) {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    &.skill--header {
+      position: sticky;
+      top: 0;
+      background: black;
+      color: white;
+      z-index: 1;
+
+      > * {
+        height: 30px;
+      }
+    }
+  }
+
+  input {
+    border: 1px dashed black;
+    background: transparent;
+    border-radius: 0;
+    flex: 1 0 0;
+    font-size: 16pt;
+    text-align: center;
+  }
+  input[disabled] {
+    border: 0 solid transparent;
+    outline: 0;
+  }
+
+  .skill-name {
+    display: flex;
+    align-items: center;
+    font-size: 14pt;
+    justify-content: start;
+    flex-wrap: wrap;
+
+    color: black;
+    flex: 1 0 100px;
+  }
+}
