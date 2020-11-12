@@ -1,12 +1,19 @@
-<form class="flexcol {{cssClass}}" autocomplete="off">
+<form class="flexcol {{cssClass}}"
+      autocomplete="off">
     {{!-- Sheet Header --}}
     <header class="sheet-header">
-        <img class="profile-img" src="{{actor.img}}" data-edit="img"
-             title="{{actor.name}}" height="100" width="100" />
+        <img class="profile-img"
+             src="{{actor.img}}"
+             data-edit="img"
+             title="{{actor.name}}"
+             height="100"
+             width="100" />
         <div class="header-fields">
             <h1 class="charname">
-                <input name="name" type="text"
-                       value="{{actor.name}}" placeholder="Name" />
+                <input name="name"
+                       type="text"
+                       value="{{actor.name}}"
+                       placeholder="Name" />
             </h1>
             <div style="display: flex; flex-wrap: nowrap;">
                 <div class="character-value">
@@ -14,22 +21,24 @@
                         <div class="label--title">LVL</div>
                         <div class="label--subtitle">LEVEL</div>
                     </div>
-                    <input type="number" data-dtype="Number"
-                        id="level"
-                        name="data.level.value"
-                        value="{{data.level.value}}"
-                        style="text-align: center;" />
+                    <input type="number"
+                           data-dtype="Number"
+                           id="level"
+                           name="data.level.value"
+                           value="{{data.level.value}}"
+                           style="text-align: center;" />
                 </div>
                 <div class="character-value">
                     <div class="character-value--label">
                         <div class="label--title">XP</div>
                         <div class="label--subtitle">EXPERIENCE</div>
                     </div>
-                    <input type="number" data-dtype="Number"
-                        id="xp"
-                        name="data.xp.value"
-                        value="{{data.xp.value}}"
-                        style="text-align: center;" />
+                    <input type="number"
+                           data-dtype="Number"
+                           id="xp"
+                           name="data.xp.value"
+                           value="{{data.xp.value}}"
+                           style="text-align: center;" />
                 </div>
             </div>
         </div>
@@ -39,40 +48,98 @@
         <p>
             Damage:
             {{#each data.damage as |d|}}
-                {{#ifEquals d "0"}}
-                    <svg width="28px" height="28px">
-                        <g transform="">
-                            <rect x="2" y="2" width="24" height="24" stroke="black" stroke-width="3" fill="transparent"/>
-                        </g>
-                    </svg>
-                {{/ifEquals}}
-                {{#ifEquals d "1"}}
-                    <svg width="28px" height="28px">
-                        <g transform="">
-                            <rect x="2" y="2" width="24" height="24" stroke="black" stroke-width="3" fill="transparent"/>
-                            <line x1="0" y1="28" x2="28" y2="0" stroke="black" stroke-width="3" />
-                        </g>
-                    </svg>
-                {{/ifEquals}}
-                {{#ifEquals d "2"}}
-                    <svg width="28px" height="28px">
-                        <g transform="">
-                            <rect x="2" y="2" width="24" height="24" stroke="black" stroke-width="3" fill="transparent"/>
-                            <line x1="0" y1="28" x2="28" y2="0" stroke="black" stroke-width="3" />
-                            <line x1="0" y1="0" x2="28" y2="28" stroke="black" stroke-width="3" />
-                        </g>
-                    </svg>
-                {{/ifEquals}}
-                {{#ifEquals d "3"}}
-                    <svg width="28px" height="28px">
-                        <g transform="">
-                            <rect x="2" y="2" width="24" height="24" stroke="black" stroke-width="3" fill="transparent"/>
-                            <line x1="0" y1="28" x2="28" y2="0" stroke="black" stroke-width="3" />
-                            <line x1="0" y1="0" x2="28" y2="28" stroke="black" stroke-width="3" />
-                            <line x1="0" y1="14" x2="28" y2="14" stroke="black" stroke-width="3" />
-                        </g>
-                    </svg>
-                {{/ifEquals}}
+            {{#ifEquals d "0"}}
+            <svg width="28px"
+                 height="28px">
+                <g transform="">
+                    <rect x="2"
+                          y="2"
+                          width="24"
+                          height="24"
+                          stroke="black"
+                          stroke-width="3"
+                          fill="transparent" />
+                </g>
+            </svg>
+            {{/ifEquals}}
+            {{#ifEquals d "1"}}
+            <svg width="28px"
+                 height="28px">
+                <g transform="">
+                    <rect x="2"
+                          y="2"
+                          width="24"
+                          height="24"
+                          stroke="black"
+                          stroke-width="3"
+                          fill="transparent" />
+                    <line x1="0"
+                          y1="28"
+                          x2="28"
+                          y2="0"
+                          stroke="black"
+                          stroke-width="3" />
+                </g>
+            </svg>
+            {{/ifEquals}}
+            {{#ifEquals d "2"}}
+            <svg width="28px"
+                 height="28px">
+                <g transform="">
+                    <rect x="2"
+                          y="2"
+                          width="24"
+                          height="24"
+                          stroke="black"
+                          stroke-width="3"
+                          fill="transparent" />
+                    <line x1="0"
+                          y1="28"
+                          x2="28"
+                          y2="0"
+                          stroke="black"
+                          stroke-width="3" />
+                    <line x1="0"
+                          y1="0"
+                          x2="28"
+                          y2="28"
+                          stroke="black"
+                          stroke-width="3" />
+                </g>
+            </svg>
+            {{/ifEquals}}
+            {{#ifEquals d "3"}}
+            <svg width="28px"
+                 height="28px">
+                <g transform="">
+                    <rect x="2"
+                          y="2"
+                          width="24"
+                          height="24"
+                          stroke="black"
+                          stroke-width="3"
+                          fill="transparent" />
+                    <line x1="0"
+                          y1="28"
+                          x2="28"
+                          y2="0"
+                          stroke="black"
+                          stroke-width="3" />
+                    <line x1="0"
+                          y1="0"
+                          x2="28"
+                          y2="28"
+                          stroke="black"
+                          stroke-width="3" />
+                    <line x1="0"
+                          y1="14"
+                          x2="28"
+                          y2="14"
+                          stroke="black"
+                          stroke-width="3" />
+                </g>
+            </svg>
+            {{/ifEquals}}
             {{/each}}
         </p>
         <h3>
@@ -90,18 +157,25 @@
     </div>
 
     {{!-- Sheet Tab Navigation --}}
-    <nav class="sheet-tabs tabs" data-group="primary">
-        <a class="item" data-tab="description">Description</a>
-        <a class="item" data-tab="attributes">Attributes</a>
-        <a class="item" data-tab="skills">Skills</a>
-        <a class="item" data-tab="items">Items</a>
+    <nav class="sheet-tabs tabs"
+         data-group="primary">
+        <a class="item"
+           data-tab="description">Description</a>
+        <a class="item"
+           data-tab="attributes">Attributes</a>
+        <a class="item"
+           data-tab="skills">Skills</a>
+        <a class="item"
+           data-tab="items">Items</a>
     </nav>
 
     {{!-- Sheet Body --}}
     <section class="sheet-body">
         {{> "systems/alpha/templates/parts/sheet-item-description.html" }}
 
-        <div class="tab attributes" data-group="primary" data-tab="attributes">
+        <div class="tab attributes"
+             data-group="primary"
+             data-tab="attributes">
             <div class="resource">
                 <h2>Core Attributes</h2>
 
@@ -111,7 +185,8 @@
                             <div class="label--title">PHY</div>
                             <div class="label--subtitle">PHYSIQUE</div>
                         </div>
-                        <input type="number" data-dtype="Number"
+                        <input type="number"
+                               data-dtype="Number"
                                id="physique"
                                name="data.physique.value"
                                value="{{data.physique.value}}"
@@ -125,7 +200,8 @@
                             <div class="label--title">MOT</div>
                             <div class="label--subtitle">MOTORICS</div>
                         </div>
-                        <input type="number" data-dtype="Number"
+                        <input type="number"
+                               data-dtype="Number"
                                id="motorics"
                                name="data.motorics.value"
                                value="{{data.motorics.value}}"
@@ -139,12 +215,12 @@
                             <div class="label--title">INT</div>
                             <div class="label--subtitle">INTELLECT</div>
                         </div>
-                        <input type="number" data-dtype="Number"
+                        <input type="number"
+                               data-dtype="Number"
                                id="intellect"
                                name="data.intellect.value"
                                value="{{data.intellect.value}}"
-                               class="core-attribute"
-                               />
+                               class="core-attribute" />
                         <a class="roll-button attribute-roll">
                             <i class="fas fa-dice"></i>
                         </a>
@@ -154,12 +230,12 @@
                             <div class="label--title">PSY</div>
                             <div class="label--subtitle">PSYCHE</div>
                         </div>
-                        <input type="number" data-dtype="Number"
+                        <input type="number"
+                               data-dtype="Number"
                                id="psyche"
                                name="data.psyche.value"
                                value="{{data.psyche.value}}"
-                               class="core-attribute"
-                               />
+                               class="core-attribute" />
                         <a class="roll-button attribute-roll">
                             <i class="fas fa-dice"></i>
                         </a>
@@ -174,7 +250,8 @@
                         <div class="label--title">COMPOSURE</div>
                         <div class="label--subtitle">INT + PSY</div>
                     </div>
-                    <input type="number" data-dtype="Number"
+                    <input type="number"
+                           data-dtype="Number"
                            id="Composure"
                            name="data.composure.value"
                            value="{{data.composure.value}}"
@@ -188,7 +265,8 @@
                         <div class="label--title">ENDURANCE</div>
                         <div class="label--subtitle">PHY + MOT</div>
                     </div>
-                    <input type="number" data-dtype="Number"
+                    <input type="number"
+                           data-dtype="Number"
                            id="Endurance"
                            name="data.endurance.value"
                            value="{{data.endurance.value}}"
@@ -202,7 +280,8 @@
                         <div class="label--title">FOCUS</div>
                         <div class="label--subtitle">MOT + PSY</div>
                     </div>
-                    <input type="number" data-dtype="Number"
+                    <input type="number"
+                           data-dtype="Number"
                            id="Focus"
                            name="data.focus.value"
                            value="{{data.focus.value}}"
@@ -216,7 +295,8 @@
                         <div class="label--title">VIGILANCE</div>
                         <div class="label--subtitle">PHY + INT</div>
                     </div>
-                    <input type="number" data-dtype="Number"
+                    <input type="number"
+                           data-dtype="Number"
                            id="Vigilance"
                            name="data.vigilance.value"
                            value="{{data.vigilance.value}}"
@@ -228,11 +308,11 @@
                 <p style="display: none">
                     <!-- TODO remove -->
                     Health:
-                    <input type="number" data-dtype="Number"
+                    <input type="number"
+                           data-dtype="Number"
                            name="data.health.value"
                            value="{{data.health.value}}"
-                           placeholder="(Size + Endurance) / 2"
-                           />
+                           placeholder="(Size + Endurance) / 2" />
                 </p>
 
             </div>
@@ -243,20 +323,22 @@
                     <div class="character-value--label">
                         <div class="label--title">PACE</div>
                     </div>
-                    <input type="number" data-dtype="Number"
+                    <input type="number"
+                           data-dtype="Number"
                            name="data.pace.value"
-                           value="{{data.pace.value}}"
-                           />
+                           value="{{data.pace.value}}" />
+                    <div style="flex: 0 0 30px"></div>
                 </div>
 
                 <div class="character-value">
                     <div class="character-value--label">
                         <div class="label--title">SIZE</div>
                     </div>
-                    <input type="number" data-dtype="Number"
+                    <input type="number"
+                           data-dtype="Number"
                            name="data.size.value"
-                           value="{{data.size.value}}"
-                           />
+                           value="{{data.size.value}}" />
+                    <div style="flex: 0 0 30px"></div>
                 </div>
             </div>
             <div class="resource">
@@ -267,22 +349,24 @@
                         <div class="label--title">RESILIENCE</div>
                         <div class="label--subtitle">SIZE + ENDURANCE / 2</div>
                     </div>
-                    <input type="number" data-dtype="Number"
-                                       id="Resilience"
-                                       name="data.resilience.value"
-                                       value="{{data.resilience.value}}"
-                                       />
+                    <input type="number"
+                           data-dtype="Number"
+                           id="Resilience"
+                           name="data.resilience.value"
+                           value="{{data.resilience.value}}" />
+                    <div style="flex: 0 0 30px"></div>
                 </div>
                 <div class="character-value">
                     <div class="character-value--label">
                         <div class="label--title">WILLPOWER</div>
                         <div class="label--subtitle">5 + COMPOSURE / 2</div>
                     </div>
-                    <input type="number" data-dtype="Number"
-                                       id="Willpower"
-                                       name="data.willpower.value"
-                                       value="{{data.willpower.value}}"
-                                       />
+                    <input type="number"
+                           data-dtype="Number"
+                           id="Willpower"
+                           name="data.willpower.value"
+                           value="{{data.willpower.value}}" />
+                    <div style="flex: 0 0 30px"></div>
                 </div>
             </div>
             <div class="resource">
@@ -291,37 +375,42 @@
                     <div class="character-value--label">
                         <div class="label--title">WEALTH</div>
                     </div>
-                    <input type="number" data-dtype="Number"
-                                       id="Wealth"
-                                       name="data.wealth.value"
-                                       value="{{data.wealth.value}}"
-                                       />
+                    <input type="number"
+                           data-dtype="Number"
+                           id="Wealth"
+                           name="data.wealth.value"
+                           value="{{data.wealth.value}}" />
+                    <div style="flex: 0 0 30px"></div>
                 </div>
                 <div class="character-value">
                     <div class="character-value--label">
                         <div class="label--title">RESOURCES</div>
                     </div>
-                    <input type="number" data-dtype="Number"
-                                       id="Resource"
-                                       name="data.resource.value"
-                                       value="{{data.resource.value}}"
-                                       />
+                    <input type="number"
+                           data-dtype="Number"
+                           id="Resource"
+                           name="data.resource.value"
+                           value="{{data.resource.value}}" />
+                    <div style="flex: 0 0 30px"></div>
                 </div>
                 <div class="character-value">
                     <div class="character-value--label">
                         <div class="label--title">TRADE GOODS</div>
                     </div>
-                    <input type="number" data-dtype="Number"
-                                       id="Tradegoods"
-                                       name="data.tradegoods.value"
-                                       value="{{data.tradegoods.value}}"
-                                       />
+                    <input type="number"
+                           data-dtype="Number"
+                           id="Tradegoods"
+                           name="data.tradegoods.value"
+                           value="{{data.tradegoods.value}}" />
+                    <div style="flex: 0 0 30px"></div>
                 </div>
             </div>
         </div>
 
         {{!-- All skills --}}
-        <div class="tab skills" data-group="primary" data-tab="skills">
+        <div class="tab skills"
+             data-group="primary"
+             data-tab="skills">
             <div class="skill-list">
                 <div class="skill skill--header">
                     <div>SKILL</div>
@@ -334,43 +423,44 @@
                     <div>TOTAL</div>
                 </div>
                 {{#each data.skills as |skill|}}
-                <div class="skill" data-item-id="{{skill.id}}">
+                <div class="skill"
+                     data-item-id="{{skill.id}}">
                     <div class="skill-name">{{skill.name}}</div>
-                    <input type="hidden" value="{{skill.name}}"
-                           name="data.skills.{{skill.id}}.name"
-                           />
-                    <input type="hidden" value="{{skill.id}}"
-                           name="data.skills.{{skill.id}}.id"
-                           />
-                    <input type="hidden" value="{{skill.attribute}}"
-                           name="data.skills.{{skill.id}}.attribute"
-                           />
-                    <input type="number" class="skill-rank"
+                    <input type="hidden"
+                           value="{{skill.name}}"
+                           name="data.skills.{{skill.id}}.name" />
+                    <input type="hidden"
+                           value="{{skill.id}}"
+                           name="data.skills.{{skill.id}}.id" />
+                    <input type="hidden"
+                           value="{{skill.attribute}}"
+                           name="data.skills.{{skill.id}}.attribute" />
+                    <input type="number"
+                           class="skill-rank"
                            id="{{skill.id}}-rank"
                            value="{{skill.rank}}"
                            name="data.skills.{{skill.id}}.rank"
-                           placeholder="Rank"
-                           />
+                           placeholder="Rank" />
                     <div class="operator">+</div>
                     <input type="number"
                            value="{{skill.attribute_modifier}}"
                            placeholder="Attribute Modifier"
-                           disabled="disabled"
-                           />
+                           disabled="disabled" />
                     <div class="operator">+</div>
-                    <input type="number" class="skill-modifier"
+                    <input type="number"
+                           class="skill-modifier"
                            id="{{skill.id}}-modifier"
                            value="{{skill.modifier}}"
                            name="data.skills.{{skill.id}}.modifier"
-                           placeholder="Misc. Modifier"
-                           />
+                           placeholder="Misc. Modifier" />
                     <div class="operator">=</div>
-                    <input type="number" class="total"
+                    <input type="number"
+                           class="total"
                            value="{{skill.total}}"
                            placeholder="Total"
-                           disabled="disabled"
-                           />
-                    <a id="{{skill.name}}-roll" class="roll-button skill-roll">
+                           disabled="disabled" />
+                    <a id="{{skill.name}}-roll"
+                       class="roll-button skill-roll">
                         <i class="fas fa-dice"></i>
                     </a>
                 </div>
@@ -379,55 +469,71 @@
         </div>
 
         {{!-- Biography Tab --}}
-        <div class="tab biography" data-group="primary" data-tab="description">
+        <div class="tab biography"
+             data-group="primary"
+             data-tab="description">
             {{editor content=data.biography target="data.biography"
             button=true owner=owner editable=editable}}
         </div>
 
         {{!-- Owned Items Tab --}}
-        <div class="tab items" data-group="primary" data-tab="items">
+        <div class="tab items"
+             data-group="primary"
+             data-tab="items">
             <ol class="item-list">
                 {{#each actor.items as |item id|}}
-                <li class="item flexrow" data-item-id="{{item._id}}">
-                    <img src="{{item.img}}" title="{{item.name}}" width="24" height="24" />
+                <li class="item flexrow"
+                    data-item-id="{{item._id}}">
+                    <img src="{{item.img}}"
+                         title="{{item.name}}"
+                         width="24"
+                         height="24" />
                     <h4 class="item-name">{{item.name}}</h4>
                     {{!-- Iterate through all attributes on the item and output buttons for any that are formula. --}}
                     <div class="item-buttons">
                         {{#each item.data.attributes as |itemAttr key|}}
                         {{#if itemAttr.dtype}}
-                            {{#if itemAttr.isFormula}}
-                                {{!-- Use the items.name.key format for shorthand. --}}
-                                {{#if ../../shorthand}}
-                                <button class="item-button rollable" data-roll="@items.{{slugify item.name}}.{{key}}" data-label="{{ itemAttr.label }}"
-                                    title="{{itemAttr.value}}">{{itemAttr.label}}</button>
-                                {{!-- Use the items.name.attributes.key.value format otherwise. --}}
-                                {{else}}
-                                <button class="item-button rollable"
-                                    data-roll="@items.{{slugify item.name}}.attributes.{{key}}.value" data-label="{{ itemAttr.label }}"
-                                    title="{{itemAttr.value}}">{{itemAttr.label}}</button>
-                                {{/if}}
-                            {{/if}}
+                        {{#if itemAttr.isFormula}}
+                        {{!-- Use the items.name.key format for shorthand. --}}
+                        {{#if ../../shorthand}}
+                        <button class="item-button rollable"
+                                data-roll="@items.{{slugify item.name}}.{{key}}"
+                                data-label="{{ itemAttr.label }}"
+                                title="{{itemAttr.value}}">{{itemAttr.label}}</button>
+                        {{!-- Use the items.name.attributes.key.value format otherwise. --}}
                         {{else}}
-                            {{#each itemAttr as |itemGroupedAttr groupedKey|}}
-                                {{#if itemGroupedAttr.isFormula}}
-                                    {{!-- Use the items.name.key format for shorthand. --}}
-                                    {{#if ../../../shorthand}}
-                                    <button class="item-button rollable" data-roll="@items.{{slugify item.name}}.{{key}}.{{groupedKey}}" data-label="{{ itemGroupedAttr.label }}"
-                                        title="{{itemGroupedAttr.value}}">{{itemGroupedAttr.label}}</button>
-                                    {{!-- Use the items.name.attributes.key.value format otherwise. --}}
-                                    {{else}}
-                                    <button class="item-button rollable"
-                                        data-roll="@items.{{slugify item.name}}.attributes.{{key}}.{{groupedKey}}.value" data-label="{{ itemGroupedAttr.label }}"
-                                        title="{{itemGroupedAttr.value}}">{{itemGroupedAttr.label}}</button>
-                                    {{/if}}
-                                {{/if}}
-                            {{/each}}
+                        <button class="item-button rollable"
+                                data-roll="@items.{{slugify item.name}}.attributes.{{key}}.value"
+                                data-label="{{ itemAttr.label }}"
+                                title="{{itemAttr.value}}">{{itemAttr.label}}</button>
+                        {{/if}}
+                        {{/if}}
+                        {{else}}
+                        {{#each itemAttr as |itemGroupedAttr groupedKey|}}
+                        {{#if itemGroupedAttr.isFormula}}
+                        {{!-- Use the items.name.key format for shorthand. --}}
+                        {{#if ../../../shorthand}}
+                        <button class="item-button rollable"
+                                data-roll="@items.{{slugify item.name}}.{{key}}.{{groupedKey}}"
+                                data-label="{{ itemGroupedAttr.label }}"
+                                title="{{itemGroupedAttr.value}}">{{itemGroupedAttr.label}}</button>
+                        {{!-- Use the items.name.attributes.key.value format otherwise. --}}
+                        {{else}}
+                        <button class="item-button rollable"
+                                data-roll="@items.{{slugify item.name}}.attributes.{{key}}.{{groupedKey}}.value"
+                                data-label="{{ itemGroupedAttr.label }}"
+                                title="{{itemGroupedAttr.value}}">{{itemGroupedAttr.label}}</button>
+                        {{/if}}
+                        {{/if}}
+                        {{/each}}
                         {{/if}}
                         {{/each}}
                     </div>
                     <div class="item-controls">
-                        <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
-                        <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+                        <a class="item-control item-edit"
+                           title="Edit Item"><i class="fas fa-edit"></i></a>
+                        <a class="item-control item-delete"
+                           title="Delete Item"><i class="fas fa-trash"></i></a>
                     </div>
                 </li>
                 {{/each}}
