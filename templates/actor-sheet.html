@@ -24,7 +24,42 @@
     <div class="extra-resource">
         <p>
             Damage:
-            {{#each data.damage as |d|}}<strong>{{d}}</strong>{{/each}}
+            {{#each data.damage as |d|}}
+                {{#ifEquals d "0"}}
+                    <svg width="28px" height="28px">
+                        <g transform="">
+                            <rect x="2" y="2" width="24" height="24" stroke="black" stroke-width="3" fill="transparent"/>
+                        </g>
+                    </svg>
+                {{/ifEquals}}
+                {{#ifEquals d "1"}}
+                    <svg width="28px" height="28px">
+                        <g transform="">
+                            <rect x="2" y="2" width="24" height="24" stroke="black" stroke-width="3" fill="transparent"/>
+                            <line x1="0" y1="28" x2="28" y2="0" stroke="black" stroke-width="3" />
+                        </g>
+                    </svg>
+                {{/ifEquals}}
+                {{#ifEquals d "2"}}
+                    <svg width="28px" height="28px">
+                        <g transform="">
+                            <rect x="2" y="2" width="24" height="24" stroke="black" stroke-width="3" fill="transparent"/>
+                            <line x1="0" y1="28" x2="28" y2="0" stroke="black" stroke-width="3" />
+                            <line x1="0" y1="0" x2="28" y2="28" stroke="black" stroke-width="3" />
+                        </g>
+                    </svg>
+                {{/ifEquals}}
+                {{#ifEquals d "3"}}
+                    <svg width="28px" height="28px">
+                        <g transform="">
+                            <rect x="2" y="2" width="24" height="24" stroke="black" stroke-width="3" fill="transparent"/>
+                            <line x1="0" y1="28" x2="28" y2="0" stroke="black" stroke-width="3" />
+                            <line x1="0" y1="0" x2="28" y2="28" stroke="black" stroke-width="3" />
+                            <line x1="0" y1="14" x2="28" y2="14" stroke="black" stroke-width="3" />
+                        </g>
+                    </svg>
+                {{/ifEquals}}
+            {{/each}}
         </p>
         <h3>
             Take Damage:
