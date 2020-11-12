@@ -115,12 +115,11 @@ export class AlphaActorSheet extends ActorSheet
             return;
         }
 
-        let healed = false
-        for (let i = 0; i < damage.length - 1; i++) {
-            if (healed) damage[i - 1] = damage[i]
-            else if (damage[i] <= type) {
-                healed = true
-                damage[i] = 0
+        for (let i = 0; i < damage.length; i++) {
+            if (damage[i] <= type) {
+                damage.splice(i, 1)
+                damage.push(0)
+                break
             }
         }
 
