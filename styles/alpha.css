@@ -9,6 +9,7 @@
   overflow-y: hidden;
 }
 .alpha form {
+  min-height: 0;
   height: 100%;
 }
 .alpha .sheet-header {
@@ -115,7 +116,7 @@
   border: none;
 }
 .alpha .attributes .attribute-roll {
-  flex: 0 0 30px;
+  flex: 0 0 40px;
   text-align: center;
   border-bottom: none;
   display: flex;
