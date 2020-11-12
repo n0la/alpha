@@ -19,8 +19,8 @@ export class AlphaActor extends Actor
         if (this.damage == null) {
             this.damage = [];
         }
-        if (this.damage.length != this.health) {
-            this.damage.length = this.health;
+        if (this.damage.length != this.resilience) {
+            this.damage.length = this.resilience;
             let damage = [...this.damage].map(
                 v => v == null ? 0 : v
             );
@@ -88,12 +88,12 @@ export class AlphaActor extends Actor
         this.data.data.skills = value;
     }
 
-    get health() {
-        return this.data.data.health.value;
+    get resilience() {
+        return this.data.data.resilience.value;
     }
 
-    set health(value) {
-        this.data.data.health.value = parseInt(value);
+    set resilience(value) {
+        this.data.data.resilience.value = parseInt(value);
     }
 
     get damage() {

@@ -143,14 +143,14 @@ export class AlphaActorSheet extends ActorSheet
     }
 
     _update_damage(formData) {
-        const neu = formData["data.health.value"];
+        const neu = formData["data.resilience.value"];
 
         if (neu == null) {
             return formData;
         }
 
-        if (neu != this.object.health) {
-            this.object.health = neu;
+        if (neu != this.object.resilience) {
+            this.object.resilience = neu;
             this.object.update_damage();
             formData['data.damage'] = this.object.damage;
         }
