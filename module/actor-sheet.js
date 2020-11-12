@@ -109,20 +109,17 @@ export class AlphaActorSheet extends ActorSheet
         this.actor.update_damage();
 
         let damage = this.actor.damage;
-        let i = 0;
-
         if (damage.length <= 0) {
             return;
         }
 
-        i = damage.length - 1;
-        while (damage[i] == 0 && i >= 0) {
-            --i;
+        const i = damage.findIndex((v) => v <= type);
+        if (i == -1) {
+            return;
         }
 
-        if (damage[i] <= type) {
-            damage[i] = 0;
-        }
+        damage.splice(i, 1);
+        damage.push(0);
 
         this.actor.update({'data.damage': damage});
     }
