@@ -10,7 +10,7 @@
     "browserslist": [
         "last 3 versions"
     ],
-    "author": "Florian Stinglmayr",
+    "author": "Florian Stinglmayr, Johannes Zwirchmayr",
     "license": "MIT",
     "private": true,
     "dependencies": {
