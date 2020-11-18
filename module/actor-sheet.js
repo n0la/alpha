@@ -60,23 +60,19 @@ export class AlphaActorSheet extends ActorSheet
             .on("click", this._heal_damage.bind(this, 3));
 
         // Same for sanity
-        html.find(".take-rattled-damage")
+        html.find(".take-shaking-damage")
             .on("click", this._take_sanity_damage.bind(this, 1));
         html.find(".take-dread-damage")
             .on("click", this._take_sanity_damage.bind(this, 2));
         html.find(".take-despair-damage")
             .on("click", this._take_sanity_damage.bind(this, 3));
         // Heal damage
-        html.find(".heal-rattled-damage")
+        html.find(".heal-shaking-damage")
             .on("click", this._heal_sanity_damage.bind(this, 1));
         html.find(".heal-dread-damage")
             .on("click", this._heal_sanity_damage.bind(this, 2));
         html.find(".heal-despair-damage")
             .on("click", this._heal_sanity_damage.bind(this, 3));
-
-        // Handle saving of skill ranks
-        //html.find(".skill-rank")
-        //    .on("input", this._submit_skill_rank.bind(this));
 
         // Handle rolling attributes
         html.find(".attribute-roll")
