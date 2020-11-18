@@ -207,7 +207,7 @@ export class AlphaActorSheet extends ActorSheet
             return formData;
         }
 
-        if (neu != this.object.resilience) {
+        if (neu != this.object.willpower) {
             this.object.willpower = neu;
             this.object.update_sanity();
             formData['data.sanity'] = this.object.sanity;
