@@ -59,6 +59,21 @@ export class AlphaActorSheet extends ActorSheet
         html.find(".heal-brutal-damage")
             .on("click", this._heal_damage.bind(this, 3));
 
+        // Same for sanity
+        html.find(".take-rattled-damage")
+            .on("click", this._take_sanity_damage.bind(this, 1));
+        html.find(".take-dread-damage")
+            .on("click", this._take_sanity_damage.bind(this, 2));
+        html.find(".take-despair-damage")
+            .on("click", this._take_sanity_damage.bind(this, 3));
+        // Heal damage
+        html.find(".heal-rattled-damage")
+            .on("click", this._heal_sanity_damage.bind(this, 1));
+        html.find(".heal-dread-damage")
+            .on("click", this._heal_sanity_damage.bind(this, 2));
+        html.find(".heal-despair-damage")
+            .on("click", this._heal_sanity_damage.bind(this, 3));
+
         // Handle saving of skill ranks
         //html.find(".skill-rank")
         //    .on("input", this._submit_skill_rank.bind(this));
@@ -124,6 +139,25 @@ export class AlphaActorSheet extends ActorSheet
         this.actor.update({'data.damage': damage});
     }
 
+    _heal_sanity_damage(type) {
+        this.actor.update_sanity();
+
+        let sanity = this.actor.sanity;
+        if (sanity.length <= 0) {
+            return;
+        }
+
+        const i = sanity.findIndex((v) => v <= type);
+        if (i == -1) {
+            return;
+        }
+
+        sanity.splice(i, 1);
+        sanity.push(0);
+
+        this.actor.update({'data.sanity': sanity});
+    }
+
     _take_damage(type) {
         this.actor.update_damage();
 
@@ -139,6 +173,21 @@ export class AlphaActorSheet extends ActorSheet
         this.actor.update({'data.damage': damage});
     }
 
+    _take_sanity_damage(type) {
+        this.actor.update_sanity();
+
+        let sanity = this.actor.sanity;
+        let i = 0;
+        let len = sanity.length;
+
+        for (i = 0; type <= sanity[i] && i < len; i++)
+            ;
+        sanity.splice(i, 0, type);
+        sanity.length = len;
+
+        this.actor.update({'data.sanity': sanity});
+    }
+
     _update_damage(formData) {
         const neu = formData["data.resilience.value"];
 
@@ -150,6 +199,22 @@ export class AlphaActorSheet extends ActorSheet
             this.object.resilience = neu;
             this.object.update_damage();
             formData['data.damage'] = this.object.damage;
+        }
+
+        return formData;
+    }
+
+    _update_sanity(formData) {
+        const neu = formData["data.willpower.value"];
+
+        if (neu == null) {
+            return formData;
+        }
+
+        if (neu != this.object.resilience) {
+            this.object.willpower = neu;
+            this.object.update_sanity();
+            formData['data.sanity'] = this.object.sanity;
         }
 
         return formData;
@@ -298,6 +363,9 @@ export class AlphaActorSheet extends ActorSheet
         /* update health
          */
         formData = this._update_damage(formData);
+        /* and sanity
+         */
+        formData = this._update_sanity(formData);
 
         return this.object.update(formData);
     }

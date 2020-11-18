@@ -156,6 +156,118 @@
         </h3>
     </div>
 
+    <div class="extra-resource">
+        <p>
+            Sanity:
+            {{#each data.sanity as |s|}}
+            {{#ifEquals s "0"}}
+            <svg width="28px"
+                 height="28px">
+                <g transform="">
+                    <rect x="2"
+                          y="2"
+                          width="24"
+                          height="24"
+                          stroke="black"
+                          stroke-width="3"
+                          fill="transparent" />
+                </g>
+            </svg>
+            {{/ifEquals}}
+            {{#ifEquals s "1"}}
+            <svg width="28px"
+                 height="28px">
+                <g transform="">
+                    <rect x="2"
+                          y="2"
+                          width="24"
+                          height="24"
+                          stroke="black"
+                          stroke-width="3"
+                          fill="transparent" />
+                    <line x1="0"
+                          y1="28"
+                          x2="28"
+                          y2="0"
+                          stroke="black"
+                          stroke-width="3" />
+                </g>
+            </svg>
+            {{/ifEquals}}
+            {{#ifEquals s "2"}}
+            <svg width="28px"
+                 height="28px">
+                <g transform="">
+                    <rect x="2"
+                          y="2"
+                          width="24"
+                          height="24"
+                          stroke="black"
+                          stroke-width="3"
+                          fill="transparent" />
+                    <line x1="0"
+                          y1="28"
+                          x2="28"
+                          y2="0"
+                          stroke="black"
+                          stroke-width="3" />
+                    <line x1="0"
+                          y1="0"
+                          x2="28"
+                          y2="28"
+                          stroke="black"
+                          stroke-width="3" />
+                </g>
+            </svg>
+            {{/ifEquals}}
+            {{#ifEquals s "3"}}
+            <svg width="28px"
+                 height="28px">
+                <g transform="">
+                    <rect x="2"
+                          y="2"
+                          width="24"
+                          height="24"
+                          stroke="black"
+                          stroke-width="3"
+                          fill="transparent" />
+                    <line x1="0"
+                          y1="28"
+                          x2="28"
+                          y2="0"
+                          stroke="black"
+                          stroke-width="3" />
+                    <line x1="0"
+                          y1="0"
+                          x2="28"
+                          y2="28"
+                          stroke="black"
+                          stroke-width="3" />
+                    <line x1="0"
+                          y1="14"
+                          x2="28"
+                          y2="14"
+                          stroke="black"
+                          stroke-width="3" />
+                </g>
+            </svg>
+            {{/ifEquals}}
+            {{/each}}
+        </p>
+        <h3>
+            Take Sanity Damage:
+            <a class="take-rattled-damage">Rattled</a> /
+            <a class="take-dread-damage">Dread</a> /
+            <a class="take-despair-damage">Despair</a>
+        </h3>
+        <h3>
+            Heal Sanity Damage:
+            <a class="heal-rattled-damage">Rattled</a> /
+            <a class="heal-dread-damage">Dread</a> /
+            <a class="heal-despair-damage">Despair</a>
+        </h3>
+    </div>
+
     {{!-- Sheet Tab Navigation --}}
     <nav class="sheet-tabs tabs"
          data-group="primary">
@@ -402,6 +514,34 @@
                            id="Tradegoods"
                            name="data.tradegoods.value"
                            value="{{data.tradegoods.value}}" />
+                    <div style="flex: 0 0 40px"></div>
+                </div>
+            </div>
+            <div class="resource">
+                <h2>Combat</h2>
+
+                <div class="character-value">
+                    <div class="character-value--label">
+                        <div class="label--title">DEFENCE</div>
+                        <div class="label--subtitle">&nbsp;</div>
+                    </div>
+                    <input type="number"
+                           data-dtype="Number"
+                           id="Defence"
+                           name="data.defence.value"
+                           value="{{data.defence.value}}" />
+                    <div style="flex: 0 0 40px"></div>
+                </div>
+                <div class="character-value">
+                    <div class="character-value--label">
+                        <div class="label--title">ARMOUR</div>
+                        <div class="label--subtitle">&nbsp;</div>
+                    </div>
+                    <input type="number"
+                           data-dtype="Number"
+                           id="Armour"
+                           name="data.armour.value"
+                           value="{{data.armour.value}}" />
                     <div style="flex: 0 0 40px"></div>
                 </div>
             </div>

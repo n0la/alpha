@@ -28,6 +28,19 @@ export class AlphaActor extends Actor
         }
     }
 
+    update_sanity() {
+        if (this.sanity == null) {
+            this.sanity = [];
+        }
+        if (this.sanity.length != this.willpower) {
+            this.sanity.length = this.willpower;
+            let sanity = [...this.sanity].map(
+                v => v == null ? 0 : v
+            );
+            this.sanity = sanity;
+        }
+    }
+
     /** @override */
     _initialize() {
         super._initialize();
@@ -45,6 +58,7 @@ export class AlphaActor extends Actor
 
             composure: {value: 0},
             endurance: {value: 0},
+            damage: [],
             focus: {value: 0},
             vigilance: {value: 0},
 
@@ -53,8 +67,10 @@ export class AlphaActor extends Actor
 
             resilience: {value: 0},
             willpower: {value: 0},
-            health: {value: 5},
-            damage: [],
+            sanity: [],
+
+            defence: {value: 0},
+            armour: {value: 0},
 
             wealth: {value: 0},
             resources: {value: 0},
@@ -78,6 +94,7 @@ export class AlphaActor extends Actor
         }
 
         this.update_damage();
+        this.update_sanity();
     }
 
     get skills() {
@@ -96,12 +113,28 @@ export class AlphaActor extends Actor
         this.data.data.resilience.value = parseInt(value);
     }
 
+    get willpower() {
+        return this.data.data.willpower.value;
+    }
+
+    set willpower(value) {
+        this.data.data.willpower.value = parseInt(value);
+    }
+
     get damage() {
         return this.data.data.damage;
     }
 
     set damage(value) {
         this.data.data.damage = value;
+    }
+
+    get sanity() {
+        return this.data.data.sanity;
+    }
+
+    set sanity(value) {
+        this.data.data.sanity = value;
     }
 
     /* -------------------------------------------- */
