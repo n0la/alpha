@@ -30,7 +30,7 @@ export class AlphaItemSheet extends ItemSheet
     /** @override */
     _updateObject(event, formData)
     {
-        return this.object.update(formData);
+        super._updateObject(event, formData);
     }
 
     /**
