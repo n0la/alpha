@@ -8,15 +8,11 @@
 // Import Modules
 import { AlphaActor } from "./actor.js";
 import { AlphaActorSheet } from "./actor-sheet.js";
-import { AlphaItemSheet } from "./item-sheet.js";
-import { AlphaWeaponSheet } from "./weapon-sheet.js";
-import { AlphaArmourSheet } from "./armour-sheet.js";
 import { preloadHandlebarsTemplates } from "./templates.js";
 import { createAlphaMacro } from "./macro.js";
-import {
-    AlphaItem,
-    AlphaWeapon,
-} from "./items.js";
+import { RegisterItemSheets } from './items/item.js'
+
+import { itemConstructor } from "./factory.js";
 
 Handlebars.registerHelper('ifEquals', function(arg1, arg2, options) {
     return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
@@ -41,23 +37,23 @@ Hooks.once("init", async function() {
         decimals: 2
     };
 
+    // Define custom Entity classes
+    CONFIG.Actor.entityClass = AlphaActor;
+    CONFIG.Item.entityClass = itemConstructor;
+
     game.alpha = {
         AlphaActor,
         createAlphaMacro
     };
 
-    // Define custom Entity classes
-    CONFIG.Actor.entityClass = AlphaActor;
-    CONFIG.Item.entityClass = AlphaItem;
-
     // Register sheet application classes
     Actors.unregisterSheet("core", ActorSheet);
-    Actors.registerSheet("alpha", AlphaActorSheet, { makeDefault: true });
+    Actors.registerSheet("alpha", AlphaActorSheet, {
+        types: ['character'],
+        makeDefault: true
+    });
 
-    Items.unregisterSheet("core", ItemSheet);
-    Items.registerSheet("alpha", AlphaItemSheet, { makeDefault: true });
-    Items.registerSheet("alpha", AlphaWeaponSheet);
-    Items.registerSheet("alpha", AlphaArmourSheet);
+    RegisterItemSheets();
 
     // Register system settings
     game.settings.register("alpha", "macroShorthand", {
@@ -193,18 +189,6 @@ Hooks.on("getItemDirectoryEntryContext", (html, options) => {
         }
     });
 });
-
-
-async function _onCreateEntity(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    return _simpleDirectoryTemplates(this, event);
-}
-
-ActorDirectory.prototype._onCreateEntity = _onCreateEntity; // For 0.7.x+
-ItemDirectory.prototype._onCreateEntity = _onCreateEntity;
-ActorDirectory.prototype._onCreate = _onCreateEntity; // TODO: for 0.6.6
-ItemDirectory.prototype._onCreate = _onCreateEntity;
 
 /**
  * Display the entity template dialog.

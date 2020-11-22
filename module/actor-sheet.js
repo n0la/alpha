@@ -9,8 +9,7 @@ import {
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}
  */
-export class AlphaActorSheet extends ActorSheet
-{
+export class AlphaActorSheet extends ActorSheet {
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
             classes: ["alpha", "sheet", "actor"],

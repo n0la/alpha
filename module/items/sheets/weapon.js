@@ -1,9 +1,7 @@
-import { AlphaWeapon } from "./items.js";
-import { AlphaItemSheet } from "./item-sheet.js";
-import { AlphaSkill } from "./alpha-system.js";
-import { RollHelper } from "./helper.js";
+import { AlphaSkill } from "../../alpha-system.js";
+import { RollHelper } from "../../helper.js";
 
-export class AlphaWeaponSheet extends AlphaItemSheet
+export class AlphaWeaponSheet extends ItemSheet
 {
     /** @override */
     static get defaultOptions() {
@@ -18,12 +16,6 @@ export class AlphaWeaponSheet extends AlphaItemSheet
             scrollY: [".attributes"]
         });
     };
-
-    /** @override */
-    getData() {
-        let data = super.getData();
-        return data;
-    }
 
     /** @override */
     activateListeners(html) {
@@ -86,11 +78,5 @@ export class AlphaWeaponSheet extends AlphaItemSheet
             `Attack with ${this.object.name}`,
             this._get_extra_info()
         );
-    }
-
-    /** @override */
-    _updateObject(event, formdata) {
-        this.updateObjectType(AlphaWeapon);
-        return this.object.update(formdata);
     }
 }
