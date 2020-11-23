@@ -16,104 +16,35 @@
 
         <div class="tab common" data-group="primary" data-tab="common">
             <div class="item-sheet">
-                <div class="resource">
-                    <div class="item-traits">
-                        <div class="character-value--label" style="height: 40px; grid-column: span; margin-right: 0">
-                            <div class="label--title">Traits</div>
-                        </div>
-
-                        <div class="item-trait">
-                            <div class="item-trait--active">
-                                <input type="number"
-                                        name="data.bulky.value"
-                                        value="{{data.bulky.value}}" />
-                            </div>
-                            <label>Bulky</label>
-                        </div>
-                        <div class="item-trait">
-                            <div class="item-trait--active">
-                                <input type="checkbox"
-                                       name="data.cumbersome.value"
-                                       value="{{data.cumbersome.value}}"
-                                       {{#if data.cumbersome.value}}
-                                       checked
-                                       {{/if}} />
-                            </div>
-                            <label>Cumbersome</label>
-                        </div>
-                        <div class="item-trait">
-                            <div class="item-trait--active">
-                                <input type="checkbox"
-                                       name="data.reliable.value"
-                                       value="{{data.reliable.value}}"
-                                       {{#if data.reliable.value}}
-                                       checked
-                                       {{/if}} />
-                            </div>
-                            <label>Reliable</label>
-                        </div>
-                        <div class="item-trait">
-                            <div class="item-trait--active">
-                                <input type="checkbox"
-                                       name="data.small.value"
-                                       value="{{data.small.value}}"
-                                       {{#if data.small.value}}
-                                       checked
-                                       {{/if}} />
-                            </div>
-                            <label>Small</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="resource">
-                    <div class="character-value">
-                        <div class="character-value--label">
-                            <div class="label--title">Resources</div>
-                        </div>
-                        <input type="number"
-                               data-dtype="Number"
-                               name="data.resources.value"
-                               value="{{data.resources.value}}" />
-                        <div style="flex: 0 0 40px"></div>
-                    </div>
-
-                    <div class="character-value">
-                        <div class="character-value--label">
-                            <div class="label--title">Value</div>
-                        </div>
-                        <input type="number"
-                               data-dtype="Number"
-                               name="data.value.value"
-                               value="{{data.value.value}}" />
-                        <div style="flex: 0 0 40px"></div>
-                    </div>
-                </div>
+                {{> "systems/alpha/templates/parts/sheet-item-common.html" }}
             </div>
         </div>
 
         {{!-- Attributes Tab --}}
         <div class="tab attributes" data-group="primary" data-tab="attributes">
             <div class="resource">
-                <div class="character-value">
-                    <div class="character-value--label">
-                        <div class="label--title">Armour Rating</div>
+                <div class="item-value">
+                    <div class="item-value--label">
+                        <div class="label--title">AR</div>
                     </div>
                     <input type="number"
                            data-dtype="Number"
+                           id="rating"
                            name="data.rating.value"
                            value="{{data.rating.value}}" />
                 </div>
-                <div class="character-value">
-                    <div class="character-value--label">
-                        <div class="label--title">Hazard Rating</div>
+                <div class="item-value">
+                    <div class="item-value--label">
+                        <div class="label--title">Hazard</div>
                     </div>
                     <input type="number"
                            data-dtype="Number"
+                           id="hazard"
                            name="data.hazard.value"
                            value="{{data.hazard.value}}" />
                 </div>
-                <div class="character-value">
-                    <div class="character-value--label">
+                <div class="item-value">
+                    <div class="item-value--label">
                         <div class="label--title">Sealed</div>
                     </div>
                     <input type="checkbox"

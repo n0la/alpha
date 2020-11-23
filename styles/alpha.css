@@ -358,3 +358,20 @@
 .alpha .item-sheet .item-trait--active {
   text-align: center;
 }
+.alpha .item-value {
+  width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  float: left;
+  margin: 2px;
+}
+.alpha .item-value--label {
+  background: black;
+  color: white;
+  width: 100%;
+}
+.alpha .item-value--label .label--title {
+  font-size: 10pt;
+}
