@@ -9,8 +9,7 @@ import {
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}
  */
-export class AlphaActorSheet extends ActorSheet
-{
+export class AlphaActorSheet extends ActorSheet {
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
             classes: ["alpha", "sheet", "actor"],
@@ -23,14 +22,6 @@ export class AlphaActorSheet extends ActorSheet
             scrollY: [".biography", ".items", ".attributes", ".skills"],
             dragDrop: [{dragSelector: ".item-list .item", dropSelector: null}]
         });
-    }
-
-    /** @override */
-    getData() {
-        const data = super.getData();
-        EntitySheetHelper.getAttributeData(data);
-        data.shorthand = !!game.settings.get("alpha", "macroShorthand");
-        return data;
     }
 
     /** @override */

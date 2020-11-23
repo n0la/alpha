@@ -1,127 +1,73 @@
-<div class="tab common"
-     data-group="primary"
-     data-tab="common">
-    <div class="item-sheet">
-        <div class="resource">
-            <div class="item-traits">
-                <div class="character-value--label" style="height: 40px; grid-column: span; margin-right: 0">
-                    <div class="label--title">Traits</div>
-                </div>
 
-                <div class="item-trait">
-                    <div class="item-trait--active">
-                        <input type="number"
-                               name="data.bulky.value"
-                               value="{{data.bulky.value}}" />
-                    </div>
-                    <label>Bulky</label>
-                </div>
-                <div class="item-trait">
-                    <div class="item-trait--active">
-                        <input type="number"
-                               name="data.rapidfire.value"
-                               value="{{data.rapidfire.value}}" />
-                    </div>
-                    <label>Rapidfire</label>
-                </div>
-                <div class="item-trait">
-                    <div class="item-trait--active">
-                        <input type="number"
-                               name="data.heavy.value"
-                               value="{{data.heavy.value}}" />
-                    </div>
-                    <label>Heavy</label>
-                </div>
-                <div class="item-trait">
-                    <div class="item-trait--active">
-                        <input type="checkbox"
-                               name="data.areaeffect.value"
-                               value="{{data.areaeffect.value}}"
-                               {{#if data.areaeffect.value}}
-                               checked
-                               {{/if}} />
-                    </div>
-                    <label>Area Effect</label>
-                </div>
-                <div class="item-trait">
-                    <div class="item-trait--active">
-                        <input type="checkbox"
-                               name="data.parry.value"
-                               value="{{data.parry.value}}"
-                               {{#if data.parry.value}}
-                               checked
-                               {{/if}} />
-                    </div>
-                    <label>Parry</label>
-                </div>
-                <div class="item-trait">
-                    <div class="item-trait--active">
-                        <input type="checkbox"
-                               name="data.cumbersome.value"
-                               value="{{data.cumbersome.value}}"
-                               {{#if data.cumbersome.value}}
-                               checked
-                               {{/if}} />
-                    </div>
-                    <label>Cumbersome</label>
-                </div>
-                <div class="item-trait">
-                    <div class="item-trait--active">
-                        <input type="checkbox"
-                               name="data.reliable.value"
-                               value="{{data.reliable.value}}"
-                               {{#if data.reliable.value}}
-                               checked
-                               {{/if}} />
-                    </div>
-                    <label>Reliable</label>
-                </div>
-                <div class="item-trait">
-                    <div class="item-trait--active">
-                        <input type="checkbox"
-                               name="data.small.value"
-                               value="{{data.small.value}}"
-                               {{#if data.small.value}}
-                               checked
-                               {{/if}} />
-                    </div>
-                    <label>Small</label>
-                </div>
-                <div class="item-trait">
-                    <div class="item-trait--active">
-                        <input type="checkbox"
-                               name="data.sniper.value"
-                               value="{{data.sniper.value}}"
-                               {{#if data.sniper.value}}
-                               checked
-                               {{/if}} />
-                    </div>
-                    <label>Sniper</label>
-                </div>
-            </div>
+<div class="resource">
+    <div class="item-traits">
+        <div class="character-value--label" style="height: 40px; grid-column: span; margin-right: 0">
+            <div class="label--title">Traits</div>
         </div>
-        <div class="resource">
-            <div class="character-value">
-                <div class="character-value--label">
-                    <div class="label--title">Resources</div>
-                </div>
-                <input type="number"
-                       data-dtype="Number"
-                       name="data.resources.value"
-                       value="{{data.resources.value}}" />
-                <div style="flex: 0 0 40px"></div>
-            </div>
 
-            <div class="character-value">
-                <div class="character-value--label">
-                    <div class="label--title">Value</div>
-                </div>
+        <div class="item-trait">
+            <div class="item-trait--active">
                 <input type="number"
-                       data-dtype="Number"
-                       name="data.value.value"
-                       value="{{data.value.value}}" />
-                <div style="flex: 0 0 40px"></div>
+                        name="data.bulky.value"
+                        value="{{data.bulky.value}}" />
             </div>
+            <label>Bulky</label>
         </div>
+        <div class="item-trait">
+            <div class="item-trait--active">
+                <input type="checkbox"
+                        name="data.cumbersome.value"
+                        value="{{data.cumbersome.value}}"
+                        {{#if data.cumbersome.value}}
+                        checked
+                        {{/if}} />
+            </div>
+            <label>Cumbersome</label>
+        </div>
+        <div class="item-trait">
+            <div class="item-trait--active">
+                <input type="checkbox"
+                        name="data.reliable.value"
+                        value="{{data.reliable.value}}"
+                        {{#if data.reliable.value}}
+                        checked
+                        {{/if}} />
+            </div>
+            <label>Reliable</label>
+        </div>
+        <div class="item-trait">
+            <div class="item-trait--active">
+                <input type="checkbox"
+                        name="data.small.value"
+                        value="{{data.small.value}}"
+                        {{#if data.small.value}}
+                        checked
+                        {{/if}} />
+            </div>
+            <label>Small</label>
+        </div>
+    </div>
+</div>
+<div class="resource">
+    <div class="character-value">
+        <div class="character-value--label">
+            <div class="label--title">Resources</div>
+        </div>
+        <input type="number"
+                data-dtype="Number"
+                name="data.resources.value"
+                value="{{data.resources.value}}" />
+        <div style="flex: 0 0 40px"></div>
+    </div>
+
+    <div class="character-value">
+        <div class="character-value--label">
+            <div class="label--title">Value</div>
+        </div>
+        <input type="number"
+                data-dtype="Number"
+                name="data.value.value"
+                value="{{data.value.value}}" />
+        <div style="flex: 0 0 40px"></div>
     </div>
 </div>

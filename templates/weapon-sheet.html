@@ -1,4 +1,5 @@
-<form class="flexcol {{cssClass}}" autocomplete="off">
+<form class="flexcol {{cssClass}}"
+      autocomplete="off">
 
     {{> "systems/alpha/templates/parts/sheet-item-header.html" }}
 
@@ -10,11 +11,16 @@
     </div>
 
     {{!-- Sheet Tab Navigation --}}
-    <nav class="sheet-tabs tabs" data-group="primary">
-        <a class="item" data-tab="description">Description</a>
-        <a class="item" data-tab="common">Common</a>
-        <a class="item" data-tab="attributes">Attributes</a>
-        <a class="item" data-tab="advanced">Advanced</a>
+    <nav class="sheet-tabs tabs"
+         data-group="primary">
+        <a class="item"
+           data-tab="description">Description</a>
+        <a class="item"
+           data-tab="common">Common</a>
+        <a class="item"
+           data-tab="attributes">Attributes</a>
+        <a class="item"
+           data-tab="advanced">Advanced</a>
     </nav>
 
     {{!-- Sheet Body --}}
@@ -22,67 +28,168 @@
 
         {{> "systems/alpha/templates/parts/sheet-item-description.html" }}
 
-        {{> "systems/alpha/templates/parts/sheet-item-common.html" }}
+
+        <div class="tab common"
+             data-group="primary"
+             data-tab="common">
+            <div class="item-sheet">
+                {{> "systems/alpha/templates/parts/sheet-item-common.html" }}
+
+                <div class="resource">
+                    <div class="item-traits">
+                        <div class="character-value--label"
+                             style="height: 40px; grid-column: span; margin-right: 0">
+                            <div class="label--title">Weapon Traits</div>
+                        </div>
+
+                        <div class="item-trait">
+                            <div class="item-trait--active">
+                                <input type="number"
+                                       name="data.rapidfire.value"
+                                       value="{{data.rapidfire.value}}" />
+                            </div>
+                            <label>Rapidfire</label>
+                        </div>
+                        <div class="item-trait">
+                            <div class="item-trait--active">
+                                <input type="number"
+                                       name="data.heavy.value"
+                                       value="{{data.heavy.value}}" />
+                            </div>
+                            <label>Heavy</label>
+                        </div>
+                        <div class="item-trait">
+                            <div class="item-trait--active">
+                                <input type="number"
+                                       name="data.areaeffect.value"
+                                       value="{{data.areaeffect.value}}" />
+                            </div>
+                            <label>Area Effect</label>
+                        </div>
+                        <div class="item-trait">
+                            <div class="item-trait--active">
+                                <input type="checkbox"
+                                       name="data.parry.value"
+                                       value="{{data.parry.value}}"
+                                       {{#if data.parry.value}}
+                                       checked
+                                       {{/if}} />
+                            </div>
+                            <label>Parry</label>
+                        </div>
+                        <div class="item-trait">
+                            <div class="item-trait--active">
+                                <input type="checkbox"
+                                       name="data.sniper.value"
+                                       value="{{data.sniper.value}}"
+                                       {{#if data.sniper.value}}
+                                       checked
+                                       {{/if}} />
+                            </div>
+                            <label>Sniper</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         {{!-- Attributes Tab --}}
-        <div class="tab attributes" data-group="primary" data-tab="attributes">
+        <div class="tab attributes"
+             data-group="primary"
+             data-tab="attributes">
             <div class="resource">
-                <p>
-                    <label>AP:</label>
-                    <input type="number" value="{{data.ap.value}}"
-                           name="data.ap.value" />
-                </p>
-                <p>
-                    <label>Damage:</label>
-                    <input type="number" value="{{data.damage.value}}"
-                           name="data.damage.value" />
-                </p>
-                <p>
-                    <label>Attack Bonus:</label>
-                    <input type="number" value="{{data.attack_bonus.value}}"
-                           name="data.attack_bonus.value" />
-                </p>
+                <div class="item-value">
+                    <div class="item-value--label">
+                        <div class="label--title">AP</div>
+                    </div>
+                    <input type="number"
+                           data-dtype="Number"
+                           id="ap"
+                           name="data.ap.value"
+                           value="{{data.ap.value}}" />
+                </div>
+                <div class="item-value">
+                    <div class="item-value--label">
+                        <div class="label--title">Damage</div>
+                    </div>
+                    <input type="number"
+                           data-dtype="Number"
+                           id="damage"
+                           name="data.damage.value"
+                           value="{{data.damage.value}}" />
+                </div>
+                <div class="item-value">
+                    <div class="item-value--label">
+                        <div class="label--title">Attack</div>
+                    </div>
+                    <input type="number"
+                           data-dtype="Number"
+                           id="attack_bonus"
+                           name="data.attack_bonus.value"
+                           value="{{data.attack_bonus.value}}" />
+                </div>
+                <div class="item-value">
+                    <div class="item-value--label">
+                        <div class="label--title">Range</div>
+                    </div>
+                    <input type="number"
+                           data-dtype="Number"
+                           id="range"
+                           name="data.range.value"
+                           value="{{data.range.value}}" />
+                </div>
+                <div class="item-value">
+                    <div class="item-value--label">
+                        <div class="label--title">Salvo</div>
+                    </div>
+                    <input type="number"
+                           data-dtype="Number"
+                           id="salvo"
+                           name="data.salvo.value"
+                           value="{{data.salvo.value}}" />
+                </div>
+                <div class="item-value">
+                    <div class="item-value--label">
+                        <div class="label--title">Ammo</div>
+                    </div>
+                    <input type="number"
+                           data-dtype="Number"
+                           id="ammo"
+                           name="data.ammo.value"
+                           value="{{data.ammo.value}}" />
+                </div>
+                <div class="item-value">
+                    <div class="item-value--label">
+                        <div class="label--title">Magazines</div>
+                    </div>
+                    <input type="number"
+                           data-dtype="Number"
+                           id="magazines"
+                           name="data.magazines.value"
+                           value="{{data.magazines.value}}" />
+                </div>
             </div>
+            <div style="clear: both;"></div>
             <div class="resource">
-                <p>
-                    <label>Range:</label>
-                    <input type="text" value="{{data.range.value}}"
-                           name="data.range.value" />
-                </p>
-                <p>
-                    <label>Salvo:</label>
-                    <input type="number" value="{{data.salvo.value}}"
-                           name="data.salvo.value" />
-                </p>
                 <p>
                     <label>Throwable:</label>
                     <input type="checkbox"
                            name="data.throwable.value"
                            {{#if data.throwable.value}}
                            checked
-                           {{/if}}
-                           />
-                </p>
-                <p>
-                    <label>Ammo:</label>
-                    <input type="number"
-                           value="{{data.ammo.value}}"
-                           name="data.ammo.value" />
-                </p>
-                <p>
-                    <label>Magazines:</label>
-                    <input type="number"
-                           value="{{data.magazines.value}}"
-                           name="data.magazines.value" />
+                           {{/if}} />
                 </p>
             </div>
         </div>
 
-        <div class="tab advanced" data-group="primary" data-tab="advanced">
+        <div class="tab advanced"
+             data-group="primary"
+             data-tab="advanced">
             <div class="resource">
                 <p>
                     <label>Skill:</label>
-                    <input type="text" name="data.skill.value"
+                    <input type="text"
+                           name="data.skill.value"
                            value="{{data.skill.value}}">
                 </p>
             </div>

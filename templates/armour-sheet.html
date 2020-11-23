@@ -14,32 +14,46 @@
 
         {{> "systems/alpha/templates/parts/sheet-item-description.html" }}
 
-        {{> "systems/alpha/templates/parts/sheet-item-common.html" }}
+        <div class="tab common" data-group="primary" data-tab="common">
+            <div class="item-sheet">
+                {{> "systems/alpha/templates/parts/sheet-item-common.html" }}
+            </div>
+        </div>
 
         {{!-- Attributes Tab --}}
         <div class="tab attributes" data-group="primary" data-tab="attributes">
             <div class="resource">
-                <p>
-                    <label>Armour Rating:</label>
+                <div class="item-value">
+                    <div class="item-value--label">
+                        <div class="label--title">AR</div>
+                    </div>
                     <input type="number"
-                           value="{{data.rating.value}}"
-                           name="data.rating.value" />
-                </p>
-                <p>
-                    <label>Hazard Rating:</label>
+                           data-dtype="Number"
+                           id="rating"
+                           name="data.rating.value"
+                           value="{{data.rating.value}}" />
+                </div>
+                <div class="item-value">
+                    <div class="item-value--label">
+                        <div class="label--title">Hazard</div>
+                    </div>
                     <input type="number"
-                           value="{{data.hazard.value}}"
-                           name="data.hazard.value" />
-                </p>
-                <p>
-                    <label>Sealed:</label>
+                           data-dtype="Number"
+                           id="hazard"
+                           name="data.hazard.value"
+                           value="{{data.hazard.value}}" />
+                </div>
+                <div class="item-value">
+                    <div class="item-value--label">
+                        <div class="label--title">Sealed</div>
+                    </div>
                     <input type="checkbox"
                            name="data.sealed.value"
                            {{#if data.sealed.value}}
                            checked
                            {{/if}}
                            />
-                </p>
+                </div>
             </div>
         </div>
     </section>

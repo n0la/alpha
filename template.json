@@ -1,17 +1,23 @@
 {
-"Actor": {
-  "types": ["character"],
-  "character": {
+  "Actor": {
+    "types": ["character"],
+    "character": {
+    }
+  },
+  "Item": {
+    "types": [
+      "item",
+      "armor",
+      "weapon"
+    ],
+    "item": {
+      "description": "",
+      "quantity": 1,
+      "weight": 0,
+      "attributes": {},
+      "groups": {}
+    },
+    "armor": {},
+    "weapon": {}
   }
-},
-"Item": {
-  "types": ["item"],
-  "item": {
-    "description": "",
-    "quantity": 1,
-    "weight": 0,
-    "attributes": {},
-    "groups": {}
-  }
-}
 }

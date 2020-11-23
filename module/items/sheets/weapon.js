@@ -1,9 +1,7 @@
-import { AlphaWeapon } from "./items.js";
-import { AlphaItemSheet } from "./item-sheet.js";
-import { AlphaSkill } from "./alpha-system.js";
-import { RollHelper } from "./helper.js";
+import { AlphaSkill } from "../../alpha-system.js";
+import { RollHelper } from "../../helper.js";
 
-export class AlphaWeaponSheet extends AlphaItemSheet
+export class AlphaWeaponSheet extends ItemSheet
 {
     /** @override */
     static get defaultOptions() {
@@ -20,12 +18,6 @@ export class AlphaWeaponSheet extends AlphaItemSheet
     };
 
     /** @override */
-    getData() {
-        let data = super.getData();
-        return data;
-    }
-
-    /** @override */
     activateListeners(html) {
         super.activateListeners(html);
 
@@ -36,10 +28,9 @@ export class AlphaWeaponSheet extends AlphaItemSheet
     }
 
     _get_extra_info() {
-        const effect = (this.object.is_areaeffect ? "Yes" : "No");
         return `<h3>AP: ${this.object.data.data.ap.value} / ` +
             `DMG: ${this.object.data.data.damage.value} / ` +
-            `Area of Effect: ${effect}</h3>`
+            `Area of Effect: ${this.object.data.data.areaeffect.value}</h3>`
     }
 
     _on_attack_roll(event) {
@@ -86,11 +77,5 @@ export class AlphaWeaponSheet extends AlphaItemSheet
             `Attack with ${this.object.name}`,
             this._get_extra_info()
         );
-    }
-
-    /** @override */
-    _updateObject(event, formdata) {
-        this.updateObjectType(AlphaWeapon);
-        return this.object.update(formdata);
     }
 }
