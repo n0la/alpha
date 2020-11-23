@@ -49,7 +49,6 @@ Hooks.once("init", async function() {
     // Register sheet application classes
     Actors.unregisterSheet("core", ActorSheet);
     Actors.registerSheet("alpha", AlphaActorSheet, {
-        types: ['character'],
         makeDefault: true
     });
 

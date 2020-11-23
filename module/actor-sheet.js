@@ -25,14 +25,6 @@ export class AlphaActorSheet extends ActorSheet {
     }
 
     /** @override */
-    getData() {
-        const data = super.getData();
-        EntitySheetHelper.getAttributeData(data);
-        data.shorthand = !!game.settings.get("alpha", "macroShorthand");
-        return data;
-    }
-
-    /** @override */
     activateListeners(html) {
         super.activateListeners(html);
 

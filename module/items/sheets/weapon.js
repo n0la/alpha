@@ -28,10 +28,9 @@ export class AlphaWeaponSheet extends ItemSheet
     }
 
     _get_extra_info() {
-        const effect = (this.object.is_areaeffect ? "Yes" : "No");
         return `<h3>AP: ${this.object.data.data.ap.value} / ` +
             `DMG: ${this.object.data.data.damage.value} / ` +
-            `Area of Effect: ${effect}</h3>`
+            `Area of Effect: ${this.object.data.data.areaeffect.value}</h3>`
     }
 
     _on_attack_roll(event) {

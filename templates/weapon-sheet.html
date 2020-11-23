@@ -27,33 +27,78 @@
         {{!-- Attributes Tab --}}
         <div class="tab attributes" data-group="primary" data-tab="attributes">
             <div class="resource">
-                <p>
-                    <label>AP:</label>
-                    <input type="number" value="{{data.ap.value}}"
-                           name="data.ap.value" />
-                </p>
-                <p>
-                    <label>Damage:</label>
-                    <input type="number" value="{{data.damage.value}}"
-                           name="data.damage.value" />
-                </p>
-                <p>
-                    <label>Attack Bonus:</label>
-                    <input type="number" value="{{data.attack_bonus.value}}"
-                           name="data.attack_bonus.value" />
-                </p>
+                <div class="character-value">
+                    <div class="character-value--label">
+                        <div class="label--title">AP</div>
+                    </div>
+                    <input type="number"
+                           data-dtype="Number"
+                           id="ap"
+                           name="data.ap.value"
+                           value="{{data.ap.value}}" />
+                </div>
+                <div class="character-value">
+                    <div class="character-value--label">
+                        <div class="label--title">Damage</div>
+                    </div>
+                    <input type="number"
+                           data-dtype="Number"
+                           id="damage"
+                           name="data.damage.value"
+                           value="{{data.damage.value}}" />
+                </div>
+                <div class="character-value">
+                    <div class="character-value--label">
+                        <div class="label--title">Attack Bonus</div>
+                    </div>
+                    <input type="number"
+                           data-dtype="Number"
+                           id="attack_bonus"
+                           name="data.attack_bonus.value"
+                           value="{{data.attack_bonus.value}}" />
+                </div>
+                <div class="character-value">
+                    <div class="character-value--label">
+                        <div class="label--title">Range</div>
+                    </div>
+                    <input type="number"
+                           data-dtype="Number"
+                           id="range"
+                           name="data.range.value"
+                           value="{{data.range.value}}" />
+                </div>
+                <div class="character-value">
+                    <div class="character-value--label">
+                        <div class="label--title">Salvo</div>
+                    </div>
+                    <input type="number"
+                           data-dtype="Number"
+                           id="salvo"
+                           name="data.salvo.value"
+                           value="{{data.salvo.value}}" />
+                </div>
+                <div class="character-value">
+                    <div class="character-value--label">
+                        <div class="label--title">Ammo</div>
+                    </div>
+                    <input type="number"
+                           data-dtype="Number"
+                           id="ammo"
+                           name="data.ammo.value"
+                           value="{{data.ammo.value}}" />
+                </div>
+                <div class="character-value">
+                    <div class="character-value--label">
+                        <div class="label--title">Magazines</div>
+                    </div>
+                    <input type="number"
+                           data-dtype="Number"
+                           id="magazines"
+                           name="data.magazines.value"
+                           value="{{data.magazines.value}}" />
+                </div>
             </div>
             <div class="resource">
-                <p>
-                    <label>Range:</label>
-                    <input type="text" value="{{data.range.value}}"
-                           name="data.range.value" />
-                </p>
-                <p>
-                    <label>Salvo:</label>
-                    <input type="number" value="{{data.salvo.value}}"
-                           name="data.salvo.value" />
-                </p>
                 <p>
                     <label>Throwable:</label>
                     <input type="checkbox"
@@ -62,18 +107,6 @@
                            checked
                            {{/if}}
                            />
-                </p>
-                <p>
-                    <label>Ammo:</label>
-                    <input type="number"
-                           value="{{data.ammo.value}}"
-                           name="data.ammo.value" />
-                </p>
-                <p>
-                    <label>Magazines:</label>
-                    <input type="number"
-                           value="{{data.magazines.value}}"
-                           name="data.magazines.value" />
                 </p>
             </div>
         </div>

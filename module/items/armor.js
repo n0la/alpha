@@ -6,17 +6,10 @@ export class AlphaArmor extends AlphaItem {
   _initialize() {
       super._initialize();
 
-      const initial_values = {
-          rating: {value: 0},
-          hazard: {value: 0},
-          sealed: {value: false}
-      };
-
-      let neu = Object.assign(
-          {},
-          initial_values,
-          (this.data.data || {})
-      );
-      this.data.data = neu;
+      this.prepateData({
+        rating: {value: 0},
+        hazard: {value: 0},
+        sealed: {value: false}
+    })
   }
 }

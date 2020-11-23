@@ -2,7 +2,7 @@
     "name": "alpha",
     "title": "Alpha",
     "description": "A simple, and flexible d6 based system",
-    "version": 0.2,
+    "version": 0.3,
     "minimumCoreVersion": "0.7.3",
     "compatibleCoreVersion": "0.7.7",
     "templateVersion": 2,

@@ -7,30 +7,26 @@ export class AlphaItem extends Item {
   _initialize() {
       super._initialize();
 
-      const initial_values = {
-          resources: {value: 0},
-          value: {value: 0},
-          weight: {value: 0},
-          quantity: {value: 0},
-          description: {value: ""},
+      this.prepateData({
+        resources: {value: 0},
+        value: {value: 0},
+        weight: {value: 0},
+        quantity: {value: 0},
+        description: {value: ""},
 
-          areaeffect: {value: false},
-          bulky: {value: 0},
-          cumbersome: {value: false},
-          heavy: {value: 0},
-          parry: {value: false},
-          rapidfire: {value: 0},
-          reliable: {value: false},
-          small: {value: false},
-          sniper: {value: false}
-      };
+        bulky: {value: 0},
+        cumbersome: {value: false},
+        reliable: {value: false},
+        small: {value: false},
+    })
+  }
 
-      let neu = Object.assign(
-          {},
-          initial_values,
-          (this.data.data || {})
-      );
-      this.data.data = neu;
+  prepateData (data) {
+    this.data.data = Object.assign(
+        {},
+        data,
+        (this.data.data || {})
+    );
   }
 
   get type() {
