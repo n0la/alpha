@@ -1,4 +1,4 @@
-import { AlphaArmor } from "./items/armor.js";
+import { AlphaArmour } from "./items/armour.js";
 import { AlphaWeapon } from "./items/weapon.js";
 import { AlphaItem } from "./items/item.js";
 
@@ -46,7 +46,7 @@ function factory(entities, baseClass) {
 
 const itemTypes = {
   item: AlphaItem,
-  armor: AlphaArmor,
+  armour: AlphaArmour,
   weapon: AlphaWeapon
 };
 

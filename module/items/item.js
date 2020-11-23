@@ -41,7 +41,7 @@ export function RegisterItemSheets() {
     makeDefault: true
   });
   Items.registerSheet("alpha", AlphaArmourSheet, {
-    types: ["armor"],
+    types: ["armour"],
     makeDefault: true
   });
   Items.registerSheet("alpha", AlphaWeaponSheet, {

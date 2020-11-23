@@ -1,6 +1,6 @@
 import { AlphaItem } from './item.js'
 
-export class AlphaArmor extends AlphaItem {
+export class AlphaArmour extends AlphaItem {
 
   /** @override */
   _initialize() {
