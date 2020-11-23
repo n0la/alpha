@@ -7,7 +7,7 @@
   "Item": {
     "types": [
       "item",
-      "armor",
+      "armour",
       "weapon"
     ],
     "item": {
@@ -17,7 +17,7 @@
       "attributes": {},
       "groups": {}
     },
-    "armor": {},
+    "armour": {},
     "weapon": {}
   }
 }
